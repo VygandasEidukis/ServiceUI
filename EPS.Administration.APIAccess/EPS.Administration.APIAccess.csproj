@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+		<PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="EPS.Administration.Models">
+			<HintPath>..\..\EPS.Administration.ServiceAPI\EPS.Administration.Models\bin\Debug\netstandard2.0\EPS.Administration.Models.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+</Project>

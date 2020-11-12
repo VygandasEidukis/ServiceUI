@@ -1,0 +1,84 @@
+﻿<UserControl
+    x:Class="EPS.Administration.ServiceUI.View.LogInView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ViewModel="EPS.Administration.ServiceUI.ViewModel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid
+        MinWidth="350"
+        MinHeight="200"
+        MaxWidth="600"
+        MaxHeight="400">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="5" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5" />
+        </Grid.RowDefinitions>
+
+        <Grid
+            Grid.Row="2"
+            Grid.RowSpan="5"
+            Grid.Column="2"
+            Grid.ColumnSpan="5"
+            Margin="0,0,-2,-2"
+            Background="#898989" />
+
+        <Grid
+            Grid.Row="2"
+            Grid.RowSpan="5"
+            Grid.Column="2"
+            Grid.ColumnSpan="5"
+            Background="#E3E3E3">
+
+            <!--  Inputs  -->
+            <Grid Width="200" Height="100">
+                <StackPanel>
+                    <Grid>
+                        <Label>Username</Label>
+                        <TextBox
+                            Width="130"
+                            Height="17"
+                            HorizontalAlignment="Right"
+                            Text="{Binding Username}" />
+                    </Grid>
+                    <Grid>
+                        <Label>Password</Label>
+                        <TextBox
+                            Width="130"
+                            Height="17"
+                            HorizontalAlignment="Right"
+                            Text="{Binding Password}" />
+                    </Grid>
+                </StackPanel>
+                <Button
+                    Width="100"
+                    Height="20"
+                    VerticalAlignment="Bottom"
+                    Content="Log in" Click="LogInButton" />
+            </Grid>
+
+        </Grid>
+    </Grid>
+</UserControl>
