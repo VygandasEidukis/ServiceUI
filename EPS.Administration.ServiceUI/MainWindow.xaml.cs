@@ -2,7 +2,6 @@
 using EPS.Administration.ServiceUI.View;
 using PropertyChanged;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading;
@@ -13,7 +12,7 @@ namespace EPS.Administration.ServiceUI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    /// 
+    ///
     [AddINotifyPropertyChangedInterface]
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
@@ -22,6 +21,7 @@ namespace EPS.Administration.ServiceUI
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
 
         private static MainWindow _mainWindow;
+
         public static MainWindow Window
         {
             get

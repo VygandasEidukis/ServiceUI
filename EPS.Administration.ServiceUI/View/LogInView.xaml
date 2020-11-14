@@ -78,7 +78,6 @@
                     VerticalAlignment="Bottom"
                     Content="Log in" Click="LogInButton" />
             </Grid>
-
         </Grid>
     </Grid>
 </UserControl>

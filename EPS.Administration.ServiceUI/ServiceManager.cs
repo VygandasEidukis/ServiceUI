@@ -7,6 +7,7 @@ namespace EPS.Administration.ServiceUI
     public static class ServicesManager
     {
         private static ServiceProvider _serviceProvider { get; set; }
+
         public static ServiceProvider Services
         {
             get

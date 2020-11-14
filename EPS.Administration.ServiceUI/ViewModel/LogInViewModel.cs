@@ -9,7 +9,6 @@ namespace EPS.Administration.ServiceUI.ViewModel
 
         public LogInViewModel()
         {
-
         }
 
         public void ManageLogIn()

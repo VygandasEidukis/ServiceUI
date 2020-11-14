@@ -6,6 +6,7 @@ namespace EPS.Administration.APIAccess.Services
     public class BaseService
     {
         private static HttpClient _client { get; set; }
+
         public static HttpClient Client
         {
             get
@@ -19,6 +20,5 @@ namespace EPS.Administration.APIAccess.Services
                 return _client;
             }
         }
-
     }
 }
