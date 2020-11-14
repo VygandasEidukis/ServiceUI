@@ -1,4 +1,5 @@
-﻿using EPS.Administration.Models.APICommunication;
+﻿using EPS.Administration.APIAccess.Models.Exceptions;
+using EPS.Administration.Models.APICommunication;
 using EPS.Administration.ServiceUI.View;
 using PropertyChanged;
 using System;
@@ -16,13 +17,12 @@ namespace EPS.Administration.ServiceUI
     [AddINotifyPropertyChangedInterface]
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        public string AuthenticationKey { get; private set; }
         private static int NOTIFICATION_DELAY = 3;
-
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
-
         private static MainWindow _mainWindow;
 
-        public static MainWindow Window
+        public static MainWindow Instance
         {
             get
             {
@@ -36,16 +36,32 @@ namespace EPS.Administration.ServiceUI
 
         public MainWindow()
         {
-            Window = this;
+            Instance = this;
             InitializeComponent();
             _responseQueue = new ObservableCollection<BaseResponse>();
             NotificationList.ItemsSource = _responseQueue;
+        }
+
+        public void Authenticate(string token)
+        {
+            AuthenticationKey = token;
         }
 
         public void AddNotification(BaseResponse response)
         {
             _responseQueue.Add(response);
             EnqueueTimer(true);
+        }
+
+        public void AddNotification(ServiceException response)
+        {
+            var r = new BaseResponse()
+            {
+                Error = ErrorCode.ServiceError,
+                Message = response.Message
+            };
+
+            AddNotification(r);
         }
 
         private void EnqueueTimer(object state)

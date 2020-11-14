@@ -1,4 +1,5 @@
 ﻿using EPS.Administration.ServiceUI.ViewModel;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace EPS.Administration.ServiceUI.View
@@ -24,7 +25,7 @@ namespace EPS.Administration.ServiceUI.View
 
         private void LogInButton(object sender, System.Windows.RoutedEventArgs e)
         {
-            Context.ManageLogIn();
+            Task.Run(() => App.Current.Dispatcher.Invoke(() => Context.ManageLogIn()));
         }
     }
 }

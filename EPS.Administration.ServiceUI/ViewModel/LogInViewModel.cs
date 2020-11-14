@@ -1,4 +1,7 @@
-﻿using EPS.Administration.Models.Account;
+﻿using EPS.Administration.APIAccess.Models.Exceptions;
+using EPS.Administration.Models.Account;
+using EPS.Administration.Models.APICommunication;
+using System.Threading.Tasks;
 
 namespace EPS.Administration.ServiceUI.ViewModel
 {
@@ -11,10 +14,25 @@ namespace EPS.Administration.ServiceUI.ViewModel
         {
         }
 
-        public void ManageLogIn()
+        public async Task ManageLogIn()
         {
             var service = ServicesManager.SelfService;
-            service.LogIn(new User(Username, Password));
+            try
+            {
+                var userCreds = await service.LogIn(new User(Username, Password));
+
+                if (userCreds.Error == ErrorCode.OK)
+                {
+                    userCreds.Message = "Successfully logged in";
+                    MainWindow.Instance.Authenticate(userCreds.Token);
+                }
+                MainWindow.Instance.AddNotification(userCreds);
+            }
+            catch (ServiceException ex)
+            {
+                //TODO: HIGH Add logging
+                MainWindow.Instance.AddNotification(ex);
+            }
         }
     }
 }

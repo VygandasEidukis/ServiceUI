@@ -1,4 +1,5 @@
 ﻿using EPS.Administration.Models.Account;
+using EPS.Administration.Models.APICommunication;
 using System.Threading.Tasks;
 
 namespace EPS.Administration.APIAccess.Services
@@ -7,10 +8,9 @@ namespace EPS.Administration.APIAccess.Services
     {
         private const string POST_AUTHENTICATION = "api/User/authenticate";
 
-        public async Task<string> LogIn(User user)
+        public async Task<LogInResponse> LogIn(User user)
         {
-            User recievedUser = await RequestHandler.ProcessPostRequest<User, User>(POST_AUTHENTICATION, user);
-            return recievedUser.Token;
+            return await RequestHandler.ProcessPostRequest<LogInResponse, User>(POST_AUTHENTICATION, user);
         }
     }
 }
