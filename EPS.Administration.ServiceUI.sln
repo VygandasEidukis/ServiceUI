@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EPS.Administration.ServiceUI", "EPS.Administration.ServiceUI\EPS.Administration.ServiceUI.csproj", "{E2A530F5-460E-4F4D-948A-3C673815D4C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPS.Administration.APIAccess", "EPS.Administration.APIAccess\EPS.Administration.APIAccess.csproj", "{AE502DAA-E253-4E2F-8809-A103413714C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EPS.Administration.APIAccess", "EPS.Administration.APIAccess\EPS.Administration.APIAccess.csproj", "{AE502DAA-E253-4E2F-8809-A103413714C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EPS.Administration.Models", "..\EPS.Administration.ServiceAPI\EPS.Administration.Models\EPS.Administration.Models.csproj", "{5102C3FC-E397-4BA1-B8F3-8238B7A57A45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{AE502DAA-E253-4E2F-8809-A103413714C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE502DAA-E253-4E2F-8809-A103413714C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE502DAA-E253-4E2F-8809-A103413714C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5102C3FC-E397-4BA1-B8F3-8238B7A57A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5102C3FC-E397-4BA1-B8F3-8238B7A57A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5102C3FC-E397-4BA1-B8F3-8238B7A57A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5102C3FC-E397-4BA1-B8F3-8238B7A57A45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

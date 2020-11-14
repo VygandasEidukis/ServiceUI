@@ -1,7 +1,10 @@
-﻿namespace EPS.Administration.APIAccess.Services
+﻿using EPS.Administration.APIAccess.Models;
+using System.Threading.Tasks;
+
+namespace EPS.Administration.APIAccess.Services
 {
     public interface ISelfService
     {
-        string LogIn(string username, string password);
+        Task<string> LogIn(User user);
     }
 }

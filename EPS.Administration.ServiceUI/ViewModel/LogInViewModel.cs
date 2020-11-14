@@ -1,4 +1,6 @@
-﻿namespace EPS.Administration.ServiceUI.ViewModel
+﻿using EPS.Administration.APIAccess.Models;
+
+namespace EPS.Administration.ServiceUI.ViewModel
 {
     public class LogInViewModel : BaseViewModel
     {
@@ -12,7 +14,8 @@
 
         public void ManageLogIn()
         {
-
+            var service = ServicesManager.SelfService;
+            service.LogIn(new User(Username, Password));
         }
     }
 }

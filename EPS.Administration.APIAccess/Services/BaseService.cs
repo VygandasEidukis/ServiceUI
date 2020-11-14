@@ -13,15 +13,12 @@ namespace EPS.Administration.APIAccess.Services
                 if (_client == null)
                 {
                     _client = new HttpClient();
-                    _client.BaseAddress = new Uri("");
+                    _client.BaseAddress = new Uri("https://localhost:5001/");
                 }
+                _client.DefaultRequestHeaders.Add("ContentType", "application/json");
                 return _client;
             }
         }
 
-        public BaseService()
-        {
-
-        }
     }
 }

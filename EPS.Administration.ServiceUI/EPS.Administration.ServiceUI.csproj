@@ -18,6 +18,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\EPS.Administration.ServiceAPI\EPS.Administration.Models\EPS.Administration.Models.csproj" />
 		<ProjectReference Include="..\EPS.Administration.APIAccess\EPS.Administration.APIAccess.csproj" />
 	</ItemGroup>
 

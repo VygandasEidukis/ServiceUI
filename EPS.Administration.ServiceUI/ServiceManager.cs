@@ -1,7 +1,6 @@
 ﻿using EPS.Administration.APIAccess.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Net;
 
 namespace EPS.Administration.ServiceUI
 {
@@ -17,6 +16,14 @@ namespace EPS.Administration.ServiceUI
                     _serviceProvider = Init();
                 }
                 return _serviceProvider;
+            }
+        }
+
+        public static ISelfService SelfService
+        {
+            get
+            {
+                return Services.GetService<ISelfService>();
             }
         }
 

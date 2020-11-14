@@ -1,12 +1,14 @@
-﻿using System;
+﻿using EPS.Administration.APIAccess.Models;
+using System.Threading.Tasks;
 
 namespace EPS.Administration.APIAccess.Services
 {
-    public class SelfService : BaseService, ISelfService
+    public class SelfService : ISelfService
     {
-        public string LogIn(string username, string password)
+        public async Task<string> LogIn(Models.User user)
         {
-            throw new NotImplementedException();
+            Administration.Models.Account.User recievedUser = await RequestHandler.ProcessPostRequest<Administration.Models.Account.User, User>("api/User/authenticate", user);
+            return recievedUser.Token;
         }
     }
 }
