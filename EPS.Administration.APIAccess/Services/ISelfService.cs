@@ -1,4 +1,4 @@
-﻿using EPS.Administration.APIAccess.Models;
+﻿using EPS.Administration.Models.Account;
 using System.Threading.Tasks;
 
 namespace EPS.Administration.APIAccess.Services

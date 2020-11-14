@@ -11,6 +11,42 @@
     Height="600"
     mc:Ignorable="d">
     <Grid Background="#ECECEC" Loaded="Grid_Loaded">
-        <ContentControl Content="{Binding}" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ContentControl Grid.ColumnSpan="5" Content="{Binding}" />
+        <Grid
+            Grid.Column="5"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top">
+
+            <StackPanel Margin="0,10,0,0">
+                <ItemsControl Name="NotificationList">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Border
+                                    Margin="0,0,0,5"
+                                    BorderBrush="Black"
+                                    BorderThickness="1">
+                                    <WrapPanel Margin="2,2,2,2" Background="AliceBlue">
+                                        <TextBlock
+                                            Margin="0,0,5,0"
+                                            Text="{Binding Error}"
+                                            TextWrapping="WrapWithOverflow" />
+                                        <TextBlock Text="{Binding Message}" TextWrapping="Wrap" />
+                                    </WrapPanel>
+                                </Border>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+        </Grid>
     </Grid>
 </Window>
