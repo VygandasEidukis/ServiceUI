@@ -1,6 +1,7 @@
 ﻿using EPS.Administration.APIAccess.Models.Exceptions;
 using EPS.Administration.Models.APICommunication;
 using EPS.Administration.ServiceUI.View;
+using EPS.Administration.ServiceUI.View.Menu;
 using PropertyChanged;
 using System;
 using System.Collections.ObjectModel;
@@ -45,6 +46,7 @@ namespace EPS.Administration.ServiceUI
         public void Authenticate(string token)
         {
             AuthenticationKey = token;
+            ChangeView(new MenuView());
         }
 
         public void AddNotification(BaseResponse response)
@@ -93,14 +95,9 @@ namespace EPS.Administration.ServiceUI
             }
         }
 
-        private static void Dequeue(object state)
+        public void ChangeView(object view)
         {
-        }
-
-        public MainWindow(object DataContext)
-        {
-            InitializeComponent();
-            this.DataContext = DataContext;
+            DataContext = view;
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)

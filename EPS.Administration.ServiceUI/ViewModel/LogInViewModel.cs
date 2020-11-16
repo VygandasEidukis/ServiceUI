@@ -1,6 +1,9 @@
 ﻿using EPS.Administration.APIAccess.Models.Exceptions;
 using EPS.Administration.Models.Account;
 using EPS.Administration.Models.APICommunication;
+using EPS.Administration.ServiceUI.View;
+using EPS.Administration.ServiceUI.View.Device;
+using EPS.Administration.ServiceUI.View.Menu;
 using System.Threading.Tasks;
 
 namespace EPS.Administration.ServiceUI.ViewModel
