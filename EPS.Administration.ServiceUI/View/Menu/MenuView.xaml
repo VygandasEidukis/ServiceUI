@@ -9,36 +9,89 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <Grid>
+    <Grid Background="white" Loaded="Grid_Loaded">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Name="MenuColumn" Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Grid
-            Name="mainMenuWindow"
-            Width="160"
-            MinWidth="40"
-            MaxWidth="200"
-            HorizontalAlignment="Left"
-            Background="#A9B7C4">
+        <DockPanel Grid.Column="0">
+            <Grid
+                Name="mainMenuWindow"
+                Grid.Row="0"
+                Width="160"
+                MinWidth="40"
+                MaxWidth="200"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Stretch"
+                Background="#A9B7C4">
 
-            <StackPanel>
+                <StackPanel>
+                    <Button
+                        Width="30"
+                        Height="30"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="#00F0F8FF"
+                        BorderBrush="#00F0F8FF"
+                        Click="MenuSizing_Click">
+                        <Button.Content>
+                            <materialDesign:PackIcon Foreground="#000000" Kind="MenuLeft" />
+                        </Button.Content>
+                    </Button>
+                    <Button
+                        x:Name="DevicesMenuButton"
+                        HorizontalContentAlignment="Left"
+                        Background="White"
+                        Click="DevicesMenuButton_Click">
+                        <Button.Content>
+                            <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Width="40"
+                                    Height="25"
+                                    Margin="1,1,1,1"
+                                    HorizontalAlignment="Left"
+                                    Foreground="#000000"
+                                    Kind="Devices" />
+                                <TextBlock
+                                    Name="DevicesText"
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="Devices"
+                                    TextWrapping="WrapWithOverflow" />
+                            </WrapPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button
+                        x:Name="ImportExportMenuButton"
+                        HorizontalContentAlignment="Left"
+                        Background="White"
+                        Click="ImportExportMenuButton_Click">
+                        <Button.Content>
+                            <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Width="40"
+                                    Height="25"
+                                    Margin="1,1,1,1"
+                                    HorizontalAlignment="Left"
+                                    Foreground="#000000"
+                                    Kind="ImportExport" />
+                                <TextBlock
+                                    Name="ImportExportText"
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="Import/Export"
+                                    TextWrapping="WrapWithOverflow" />
+                            </WrapPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
                 <Button
-                    Width="30"
                     Height="30"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top"
-                    Background="#00F0F8FF"
-                    BorderBrush="#00F0F8FF"
-                    Click="MenuSizing_Click">
-                    <Button.Content>
-                        <materialDesign:PackIcon Foreground="#000000" Kind="MenuLeft" />
-                    </Button.Content>
-                </Button>
-                <Button HorizontalContentAlignment="Left" Background="White">
+                    VerticalAlignment="Bottom"
+                    HorizontalContentAlignment="Left"
+                    Background="#A9B7C4"
+                    BorderBrush="{x:Null}">
                     <Button.Content>
                         <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
                             <materialDesign:PackIcon
@@ -47,62 +100,22 @@
                                 Margin="1,1,1,1"
                                 HorizontalAlignment="Left"
                                 Foreground="#000000"
-                                Kind="Devices" />
+                                Kind="Door" />
                             <TextBlock
-                                Name="DevicesText"
                                 VerticalAlignment="Center"
                                 FontSize="15"
                                 FontWeight="Bold"
-                                Text="Devices"
+                                Text="Logout"
                                 TextWrapping="WrapWithOverflow" />
                         </WrapPanel>
                     </Button.Content>
                 </Button>
-                <Button HorizontalContentAlignment="Left" Background="White">
-                    <Button.Content>
-                        <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                            <materialDesign:PackIcon
-                                Width="40"
-                                Height="25"
-                                Margin="1,1,1,1"
-                                HorizontalAlignment="Left"
-                                Foreground="#000000"
-                                Kind="ImportExport" />
-                            <TextBlock
-                                Name="ImportExportText"
-                                VerticalAlignment="Center"
-                                FontSize="15"
-                                FontWeight="Bold"
-                                Text="Import/Export"
-                                TextWrapping="WrapWithOverflow" />
-                        </WrapPanel>
-                    </Button.Content>
-                </Button>
-            </StackPanel>
-            <Button
-                Height="30"
-                VerticalAlignment="Bottom"
-                HorizontalContentAlignment="Left"
-                Background="#A9B7C4"
-                BorderBrush="{x:Null}">
-                <Button.Content>
-                    <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                        <materialDesign:PackIcon
-                            Width="40"
-                            Height="25"
-                            Margin="1,1,1,1"
-                            HorizontalAlignment="Left"
-                            Foreground="#000000"
-                            Kind="Door" />
-                        <TextBlock
-                            VerticalAlignment="Center"
-                            FontSize="15"
-                            FontWeight="Bold"
-                            Text="Logout"
-                            TextWrapping="WrapWithOverflow" />
-                    </WrapPanel>
-                </Button.Content>
-            </Button>
-        </Grid>
+            </Grid>
+            <UserControl
+                x:Name="BaseContent"
+                Grid.Column="0"
+                MinWidth="100"
+                HorizontalAlignment="Stretch" />
+        </DockPanel>
     </Grid>
 </UserControl>

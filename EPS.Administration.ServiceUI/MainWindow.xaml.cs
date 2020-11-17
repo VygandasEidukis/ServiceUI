@@ -51,8 +51,8 @@ namespace EPS.Administration.ServiceUI
 
         public void AddNotification(BaseResponse response)
         {
-            _responseQueue.Add(response);
-            EnqueueTimer(true);
+            App.Current.Dispatcher.Invoke(() => _responseQueue.Add(response));
+            App.Current.Dispatcher.Invoke(() => EnqueueTimer(true));
         }
 
         public void AddNotification(ServiceException response)

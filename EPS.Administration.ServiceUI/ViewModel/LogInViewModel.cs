@@ -17,24 +17,27 @@ namespace EPS.Administration.ServiceUI.ViewModel
         {
         }
 
-        public async Task ManageLogIn()
+        public async Task<string> ManageLogIn()
         {
             var service = ServicesManager.SelfService;
             try
             {
                 var userCreds = await service.LogIn(new User(Username, Password));
 
-                if (userCreds.Error == ErrorCode.OK)
+                if (userCreds.Error != ErrorCode.OK)
                 {
-                    userCreds.Message = "Successfully logged in";
-                    MainWindow.Instance.Authenticate(userCreds.Token);
+                    MainWindow.Instance.AddNotification(userCreds);
+                    return string.Empty;
                 }
+                userCreds.Message = "Successfully logged in";
                 MainWindow.Instance.AddNotification(userCreds);
+                return userCreds.Token;
             }
             catch (ServiceException ex)
             {
                 //TODO: HIGH Add logging
                 MainWindow.Instance.AddNotification(ex);
+                return string.Empty;
             }
         }
     }

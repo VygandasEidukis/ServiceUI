@@ -10,17 +10,19 @@ namespace EPS.Administration.APIAccess.Services
 {
     internal class RequestHandler : BaseService
     {
-        public static async Task<T> ProcessPostRequest<T, G>(string request, G package) where T : class where G : class
+        public static async Task<T> ProcessPostRequest<T, G>(string request, G package, string token = null) where T : class where G : class
         {
             T result = default(T);
             try
             {
+                HttpClient httpClient = string.IsNullOrEmpty(token) ? GetClient() : GetClient(token);
+
                 HttpContent content = new StringContent(ObjectToJson(package), Encoding.UTF8, "application/json");
-                using (var response = await Client.PostAsync(request, content))
+                using (var response = await httpClient.PostAsync(request, content))
                 {
                     if (response.StatusCode != HttpStatusCode.OK)
                     {
-                        throw new ServiceException($"Status code '{response.StatusCode}':'{(int)response.StatusCode}' | {request} Failed to service address:'{Client.BaseAddress}'");
+                        throw new ServiceException($"Status code '{response.StatusCode}':'{(int)response.StatusCode}' | {request} Failed to service address:'{httpClient.BaseAddress}'");
                     }
 
                     string apiResponse = await response.Content.ReadAsStringAsync();
@@ -35,16 +37,18 @@ namespace EPS.Administration.APIAccess.Services
             return result;
         }
 
-        public static async Task<T> ProcessGetRequest<T>(string request) where T : class
+        public static async Task<T> ProcessGetRequest<T>(string request, string token = null) where T : class
         {
             T result = default(T);
             try
             {
-                using (var response = await Client.GetAsync(request))
+                HttpClient httpClient = string.IsNullOrEmpty(token) ? GetClient() : GetClient(token);
+
+                using (var response = await httpClient.GetAsync(request))
                 {
                     if (response.StatusCode != HttpStatusCode.OK)
                     {
-                        throw new ServiceException($"Status code '{response.StatusCode}':'{(int)response.StatusCode}' | {request} Failed to service address:'{Client.BaseAddress}'");
+                        throw new ServiceException($"Status code '{response.StatusCode}':'{(int)response.StatusCode}' | {request} Failed to service address:'{httpClient.BaseAddress}'");
                     }
 
                     string apiResponse = await response.Content.ReadAsStringAsync();

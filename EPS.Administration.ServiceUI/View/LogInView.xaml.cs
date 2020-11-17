@@ -23,9 +23,10 @@ namespace EPS.Administration.ServiceUI.View
             DataContext = new LogInViewModel();
         }
 
-        private void LogInButton(object sender, System.Windows.RoutedEventArgs e)
+        private async void LogInButton(object sender, System.Windows.RoutedEventArgs e)
         {
-            Task.Run(() => App.Current.Dispatcher.Invoke(() => Context.ManageLogIn()));
+            var token = await Task.Run(Context.ManageLogIn);
+            MainWindow.Instance.Authenticate(token);
         }
     }
 }

@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using EPS.Administration.ServiceUI.ViewModel.Device;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace EPS.Administration.ServiceUI.View.Device
 {
@@ -18,9 +8,19 @@ namespace EPS.Administration.ServiceUI.View.Device
     /// </summary>
     public partial class DeviceView : UserControl
     {
+        public DeviceViewModel Context
+        {
+            get { return DataContext as DeviceViewModel; }
+        }
+
         public DeviceView()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            DataContext = new DeviceViewModel();
         }
     }
 }

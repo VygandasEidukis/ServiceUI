@@ -1,24 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace EPS.Administration.APIAccess.Services
 {
     public class BaseService
     {
-        private static HttpClient _client { get; set; }
-
-        public static HttpClient Client
+        public static HttpClient GetClient()
         {
-            get
+            return GetClient(string.Empty);
+        }
+
+        public static HttpClient GetClient(string authenticationToken)
+        {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:13377/");
+            client.DefaultRequestHeaders.Add("ContentType", "application/json");
+            
+            if (!string.IsNullOrEmpty(authenticationToken))
             {
-                if (_client == null)
-                {
-                    _client = new HttpClient();
-                    _client.BaseAddress = new Uri("https://localhost:5001/");
-                }
-                _client.DefaultRequestHeaders.Add("ContentType", "application/json");
-                return _client;
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authenticationToken);
             }
+
+            return client;
         }
     }
 }
