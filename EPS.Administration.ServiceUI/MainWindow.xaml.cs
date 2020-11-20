@@ -29,7 +29,7 @@ namespace EPS.Administration.ServiceUI
             {
                 return _mainWindow;
             }
-            private set { _mainWindow = value; }
+            set { _mainWindow = value; }
         }
 
         internal ObservableCollection<BaseResponse> _responseQueue { get; set; }

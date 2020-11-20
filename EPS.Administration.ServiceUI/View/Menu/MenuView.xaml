@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    AllowDrop="True"
     mc:Ignorable="d">
     <Grid Background="white" Loaded="Grid_Loaded">
         <Grid.ColumnDefinitions>
@@ -91,7 +92,8 @@
                     VerticalAlignment="Bottom"
                     HorizontalContentAlignment="Left"
                     Background="#A9B7C4"
-                    BorderBrush="{x:Null}">
+                    BorderBrush="{x:Null}"
+                    Click="Button_Click">
                     <Button.Content>
                         <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
                             <materialDesign:PackIcon

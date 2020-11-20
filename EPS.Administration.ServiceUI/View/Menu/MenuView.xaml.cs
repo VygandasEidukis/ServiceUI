@@ -91,5 +91,10 @@ namespace EPS.Administration.ServiceUI.View.Menu
             BaseContent.Content = new ImportExportView();
             UpdateButtonBackgroud();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.DataContext = new LogInView();
+        }
     }
 }

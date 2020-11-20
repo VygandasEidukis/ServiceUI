@@ -26,7 +26,10 @@ namespace EPS.Administration.ServiceUI.View
         private async void LogInButton(object sender, System.Windows.RoutedEventArgs e)
         {
             var token = await Task.Run(Context.ManageLogIn);
-            MainWindow.Instance.Authenticate(token);
+            if (!string.IsNullOrEmpty(token))
+            {
+                MainWindow.Instance.Authenticate(token);
+            }
         }
     }
 }

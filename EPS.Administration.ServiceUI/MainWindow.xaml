@@ -9,6 +9,7 @@
     Title="MainWindow"
     Width="1200"
     Height="600"
+    AllowDrop="True"
     mc:Ignorable="d">
     <Grid Background="#ECECEC" Loaded="Grid_Loaded">
         <Grid.ColumnDefinitions>

@@ -1,30 +1,36 @@
 ﻿using EPS.Administration.APIAccess.Models.Exceptions;
 using EPS.Administration.Models.APICommunication;
+using EPS.Administration.Models.APICommunication.Filter;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace EPS.Administration.ServiceUI.ViewModel.Device
 {
     public class DeviceViewModel : BaseViewModel
     {
-        private readonly int PAGE_SIZE = 25;
-
+        public DeviceFilter Filter { get; set; }
         public ObservableCollection<Models.Device.Device> Devices { get; set; }
 
         public DeviceViewModel()
         {
-             Task.Run(() => GetDevices(1));
+            Filter = new DeviceFilter();
+            Task.Run(() => GetDevices(0));
         }
 
         public async Task GetDevices(int page)
         {
             var service = ServicesManager.SelfService;
+            Filter.Page = page;
+
             try
             {
-                var deviceResponse = await service.GetDevices(page * (PAGE_SIZE - 1), PAGE_SIZE, MainWindow.Instance.AuthenticationKey);
+                GetDevicesResponse deviceResponse = await service.GetDevices(MainWindow.Instance.AuthenticationKey, Filter);
 
                 if (deviceResponse == null || deviceResponse.Error != ErrorCode.OK)
                 {
@@ -32,6 +38,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
                 }
                 else
                 {
+                    Filter.AllPages = deviceResponse.Pages;
                     Devices = new ObservableCollection<Models.Device.Device>();
                     foreach (var device in deviceResponse.Devices)
                     {

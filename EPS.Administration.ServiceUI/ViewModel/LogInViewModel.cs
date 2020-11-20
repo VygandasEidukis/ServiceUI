@@ -28,6 +28,7 @@ namespace EPS.Administration.ServiceUI.ViewModel
                 {
                     MainWindow.Instance.AddNotification(userCreds);
                     return string.Empty;
+                    throw new ServiceException();
                 }
                 userCreds.Message = "Successfully logged in";
                 MainWindow.Instance.AddNotification(userCreds);
