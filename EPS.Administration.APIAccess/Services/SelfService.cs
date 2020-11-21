@@ -14,6 +14,7 @@ namespace EPS.Administration.APIAccess.Services
         private const string POST_UPLOADEXTENDERDATA = "api/Files/uploadExtenderData";
 
         // GET Requests
+        private const string GET_GETDEVICE = "api/Devices?serialNumber={0}";
 
         public async Task<GetDevicesResponse> GetDevices(string token, DeviceFilter filter)
         {
@@ -29,9 +30,13 @@ namespace EPS.Administration.APIAccess.Services
         public async Task<BaseResponse> ImportExtenderDataFromExcel(string token, string path)
         {
             var file = File.Open(path, FileMode.Open);
-
-
             return await RequestHandler.ProcessPostFileRequest<BaseResponse, FileStream>(POST_UPLOADEXTENDERDATA, file, file.Name, token);
+        }
+
+        public async Task<DeviceResponse> GetDevice(string token, string serialNumber)
+        {
+            var link = string.Format(GET_GETDEVICE, serialNumber);
+            return await RequestHandler.ProcessGetRequest<DeviceResponse>(link, token);
         }
     }
 }

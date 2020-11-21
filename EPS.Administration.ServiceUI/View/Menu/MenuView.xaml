@@ -35,7 +35,7 @@
                         BorderBrush="#00F0F8FF"
                         Click="MenuSizing_Click">
                         <Button.Content>
-                            <materialDesign:PackIcon Foreground="#000000" Kind="MenuLeft" />
+                            <materialDesign:PackIcon Foreground="#000000" Kind="Menu" />
                         </Button.Content>
                     </Button>
                     <Button
@@ -75,13 +75,13 @@
                                     Margin="1,1,1,1"
                                     HorizontalAlignment="Left"
                                     Foreground="#000000"
-                                    Kind="ImportExport" />
+                                    Kind="Upload" />
                                 <TextBlock
                                     Name="ImportExportText"
                                     VerticalAlignment="Center"
                                     FontSize="15"
                                     FontWeight="Bold"
-                                    Text="Import/Export"
+                                    Text="Import devices"
                                     TextWrapping="WrapWithOverflow" />
                             </WrapPanel>
                         </Button.Content>

@@ -11,9 +11,6 @@
     d:DesignWidth="800"
     Loaded="UserControl_Loaded"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <converter:IntToStringConverter x:Key="IntToString" />
-    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5" />
@@ -47,7 +44,7 @@
             Visibility="Collapsed" />
         <TextBox
             Name="Search_LastUpdate_Width"
-            Text="100"
+            Text="198"
             Visibility="Collapsed" />
 
         <WrapPanel Grid.Row="1" Grid.Column="1">
@@ -96,7 +93,8 @@
             x:Name="TerminalList"
             Grid.Row="2"
             Grid.Column="1"
-            ItemsSource="{Binding Devices}">
+            ItemsSource="{Binding Devices}"
+            MouseDoubleClick="DoubleClickTerminalItem">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -119,10 +117,6 @@
                         Width="{Binding ElementName=Search_LastUpdate_Width, Path=Text, Mode=TwoWay}"
                         DisplayMemberBinding="{Binding LastUpdate}"
                         Header="Last update" />
-                    <GridViewColumn
-                        x:Name="ModifyColumn"
-                        Width="auto"
-                        Header="Modify" />
 
                 </GridView>
             </ListView.View>

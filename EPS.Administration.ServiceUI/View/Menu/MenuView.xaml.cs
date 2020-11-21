@@ -23,9 +23,24 @@ namespace EPS.Administration.ServiceUI.View.Menu
         public Brush BackGroundBrush { get; private set; }
         public Brush ForegroundBrush { get; private set; }
 
+        private static MenuView _menuView;
+
+        public static MenuView Instance
+        {
+            get { return _menuView; }
+            set { _menuView = value; }
+        }
+
+
         public MenuView()
         {
             InitializeComponent();
+            Instance = this;
+        }
+
+        public void ChangeView(object view)
+        {
+            BaseContent.Content = view;
         }
 
         private void Init()
