@@ -15,6 +15,7 @@ namespace EPS.Administration.APIAccess.Services
 
         // GET Requests
         private const string GET_GETDEVICE = "api/Devices?serialNumber={0}";
+        private const string GET_GETDEVICEMETADATA = "api/Devices/GetMetadata";
 
         public async Task<GetDevicesResponse> GetDevices(string token, DeviceFilter filter)
         {
@@ -37,6 +38,11 @@ namespace EPS.Administration.APIAccess.Services
         {
             var link = string.Format(GET_GETDEVICE, serialNumber);
             return await RequestHandler.ProcessGetRequest<DeviceResponse>(link, token);
+        }
+
+        public async Task<DeviceMetadataResponse> GetDeviceMetadata(string token)
+        {
+            return await RequestHandler.ProcessGetRequest<DeviceMetadataResponse>(GET_GETDEVICEMETADATA, token);
         }
     }
 }

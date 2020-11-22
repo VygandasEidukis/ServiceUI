@@ -1,18 +1,60 @@
 ﻿using EPS.Administration.APIAccess.Models.Exceptions;
 using EPS.Administration.Models.APICommunication;
+using EPS.Administration.Models.Device;
 using EPS.Administration.ServiceUI.View.Menu;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace EPS.Administration.ServiceUI.ViewModel.Device
 {
     public class DeviceUpdateViewModel : BaseViewModel
     {
         public Models.Device.Device Device { get; set; }
+        public ObservableCollection<DeviceEvent> DeviceEvents{ get; set; }
+        //Metadata
+        public ObservableCollection<Classification> Classifications { get; set; }
+        public ObservableCollection<DeviceLocation> Locations { get; set; }
+        public ObservableCollection<DeviceModel> Models { get; set; }
+        public ObservableCollection<DetailedStatus> Statuses { get; set; }
+
         public DeviceUpdateViewModel(string serialNumber)
         {
             GetAndAssignDevice(serialNumber);
+            GetDeviceMetadata();
         }
 
-        public async void GetAndAssignDevice(string serialNumber)
+        private async void GetDeviceMetadata()
+        {
+            var service = ServicesManager.SelfService;
+            try
+            {
+                DeviceMetadataResponse metadataResponse = await service.GetDeviceMetadata(MainWindow.Instance.AuthenticationKey);
+
+                if (metadataResponse == null || metadataResponse.Error != ErrorCode.OK)
+                {
+                    MainWindow.Instance.AddNotification(metadataResponse);
+                }
+                else
+                {
+                    Classifications = new ObservableCollection<Classification>();
+                    metadataResponse.Classifications.ForEach(x => Classifications.Add(x));
+                    Locations = new ObservableCollection<DeviceLocation>();
+                    metadataResponse.Locations.ForEach(x => Locations.Add(x));
+                    Models = new ObservableCollection<DeviceModel>();
+                    metadataResponse.Models.ForEach(x => Models.Add(x));
+                    Statuses = new ObservableCollection<DetailedStatus>();
+                    metadataResponse.Statuses.ForEach(x => Statuses.Add(x));
+                }
+            }
+            catch (ServiceException ex)
+            {
+                //TODO: HIGH Add logging
+                MainWindow.Instance.AddNotification(ex);
+            }
+        }
+
+        private async void GetAndAssignDevice(string serialNumber)
         {
 
             if (string.IsNullOrEmpty(serialNumber))
@@ -28,13 +70,18 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
 
                 if (baseResponse == null || baseResponse.Error != ErrorCode.OK)
                 {
-                    MainWindow.Instance.AddNotification(baseResponse ?? new BaseResponse() { Error = ErrorCode.InternalError,  Message = "Failed to receive response from host." });
+                    MainWindow.Instance.AddNotification(baseResponse ?? new BaseResponse() { Error = ErrorCode.InternalError, Message = "Failed to receive response from host." });
                     MainWindow.Instance.ChangeView(new MenuView());
                 }
                 else
                 {
                     Device = baseResponse.RecievedDevice;
-                }
+                    DeviceEvents = new ObservableCollection<DeviceEvent>();
+                    if (Device.DeviceEvents != null)
+                    {
+                        Device.DeviceEvents.ForEach(x => DeviceEvents.Add(x));
+                    }
+                }               
             }
             catch (ServiceException ex)
             {

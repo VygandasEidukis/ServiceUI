@@ -1,4 +1,5 @@
-﻿using EPS.Administration.ServiceUI.ViewModel.Device;
+﻿using EPS.Administration.ServiceUI.View.Device.DeviceUpdateForms;
+using EPS.Administration.ServiceUI.ViewModel.Device;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -33,7 +34,28 @@ namespace EPS.Administration.ServiceUI.View.Device
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            Load_DetailedInfo();
             DataContext = new DeviceUpdateViewModel(SerialNumber);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Load_DetailedInfo();
+        }
+
+        public void Load_DetailedInfo()
+        {
+            DeviceUpdateContent.Content = new IdentificationDataView();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            DeviceUpdateContent.Content = new DetailedInfoView();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            DeviceUpdateContent.Content = new EventsDataView();
         }
     }
 
