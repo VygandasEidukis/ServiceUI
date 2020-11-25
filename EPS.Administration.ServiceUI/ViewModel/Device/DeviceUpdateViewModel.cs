@@ -81,12 +81,46 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
                     {
                         Device.DeviceEvents.ForEach(x => DeviceEvents.Add(x));
                     }
-                }               
+                }
             }
             catch (ServiceException ex)
             {
                 //TODO: HIGH Add logging
                 MainWindow.Instance.AddNotification(ex);
+            }
+        }
+
+        public async void AddOrUpdate()
+        {
+            Device.DeviceEvents = new List<DeviceEvent>();
+            foreach (var evnt in DeviceEvents)
+            {
+                Device.DeviceEvents.Add(evnt);
+            }
+
+            var service = ServicesManager.SelfService;
+            try
+            {
+                BaseResponse baseResponse = await service.UpdateDevice(MainWindow.Instance.AuthenticationKey, Device);
+
+                if (baseResponse == null || baseResponse.Error != ErrorCode.OK)
+                {
+                    MainWindow.Instance.AddNotification(baseResponse ?? new BaseResponse() { Error = ErrorCode.InternalError, Message = $"Failed to update device. {Device.SerialNumber}" });
+                    MainWindow.Instance.ChangeView(new MenuView());
+                }
+                else
+                {
+                    MainWindow.Instance.AddNotification(new BaseResponse() { Error = ErrorCode.OK, Message = $"Device {Device.SerialNumber} was updated successfully." });
+                }
+            }
+            catch (ServiceException ex)
+            {
+                //TODO: HIGH Add logging
+                MainWindow.Instance.AddNotification(ex);
+            }
+            finally
+            {
+                MainWindow.Instance.ChangeView(new MenuView());
             }
         }
     }

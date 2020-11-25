@@ -61,14 +61,20 @@
                     SelectedDate="{Binding ElementName=EventsList, Path=SelectedItem.Date}" />
 
                 <TextBlock Grid.Row="9" Text="Events: " />
-                <Button
-                    x:Name="AddEvent"
-                    Grid.Row="9"
-                    Grid.Column="1"
-                    Width="50"
-                    HorizontalAlignment="Right"
-                    Click="AddNewEvent"
-                    Content="Add" />
+                <DockPanel Grid.Row="9" Grid.Column="1">
+                    <Button
+                        x:Name="AddEvent"
+                        Width="50"
+                        HorizontalAlignment="Right"
+                        Click="AddNewEvent"
+                        Content="Add" />
+
+                    <Button
+                        x:Name="RemoveEvent"
+                        Width="50"
+                        HorizontalAlignment="Right"
+                        Content="Remove" Click="RemoveEventClick" />
+                </DockPanel>
 
                 <ListBox
                     x:Name="EventsList"

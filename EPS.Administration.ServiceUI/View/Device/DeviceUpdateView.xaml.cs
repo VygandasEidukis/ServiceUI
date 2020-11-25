@@ -1,4 +1,5 @@
-﻿using EPS.Administration.ServiceUI.View.Device.DeviceUpdateForms;
+﻿using EPS.Administration.Models.Device;
+using EPS.Administration.ServiceUI.View.Device.DeviceUpdateForms;
 using EPS.Administration.ServiceUI.ViewModel.Device;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,11 @@ namespace EPS.Administration.ServiceUI.View.Device
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             DeviceUpdateContent.Content = new EventsDataView();
+        }
+
+        private void AddOrUpdateButton(object sender, RoutedEventArgs e)
+        {
+            Context.AddOrUpdate();
         }
     }
 

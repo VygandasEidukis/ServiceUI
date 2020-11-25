@@ -13,5 +13,6 @@ namespace EPS.Administration.APIAccess.Services
         Task<BaseResponse> ImportExtenderDataFromExcel(string token, string path);
         Task<DeviceResponse> GetDevice(string token, string serialNumber);
         Task<DeviceMetadataResponse> GetDeviceMetadata(string token);
+        Task<BaseResponse> UpdateDevice(string authenticationKey, Device device);
     }
 }

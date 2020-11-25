@@ -46,10 +46,11 @@
                 Content="Events" Click="Button_Click_2" />
             <Button
                 Width="110"
+                
                 Margin="5,0,5,0"
                 HorizontalAlignment="Right"
                 Background="Lime"
-                Content="Add or Update" />
+                Content="Add or Update" Click="AddOrUpdateButton" />
         </DockPanel>
 
         <StackPanel

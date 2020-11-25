@@ -1,6 +1,7 @@
 ﻿using EPS.Administration.Models.Account;
 using EPS.Administration.Models.APICommunication;
 using EPS.Administration.Models.APICommunication.Filter;
+using EPS.Administration.Models.Device;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace EPS.Administration.APIAccess.Services
         private const string POST_AUTHENTICATION = "api/User/authenticate";
         private const string POST_GETDEVICES = "api/Devices/GetFiltered";
         private const string POST_UPLOADEXTENDERDATA = "api/Files/uploadExtenderData";
+        private const string POST_UPDATEDEVICE = "api/Devices/AddOrUpdate";
 
         // GET Requests
         private const string GET_GETDEVICE = "api/Devices?serialNumber={0}";
@@ -43,6 +45,11 @@ namespace EPS.Administration.APIAccess.Services
         public async Task<DeviceMetadataResponse> GetDeviceMetadata(string token)
         {
             return await RequestHandler.ProcessGetRequest<DeviceMetadataResponse>(GET_GETDEVICEMETADATA, token);
+        }
+
+        public async Task<BaseResponse> UpdateDevice(string token, Device device)
+        {
+            return await RequestHandler.ProcessPostRequest<BaseResponse, Device>(POST_UPDATEDEVICE, device, token);
         }
     }
 }

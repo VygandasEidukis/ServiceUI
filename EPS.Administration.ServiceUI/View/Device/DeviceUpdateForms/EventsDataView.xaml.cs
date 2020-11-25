@@ -34,5 +34,14 @@ namespace EPS.Administration.ServiceUI.View.Device.DeviceUpdateForms
 
             Context.DeviceEvents.Add(new DeviceEvent());
         }
+
+
+        private void RemoveEventClick(object sender, RoutedEventArgs e)
+        {
+            if (EventsList.SelectedIndex >= 0)
+            {
+                Context.DeviceEvents.RemoveAt(EventsList.SelectedIndex);
+            }
+        }
     }
 }
