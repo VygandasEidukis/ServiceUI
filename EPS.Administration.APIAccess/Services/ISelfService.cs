@@ -14,5 +14,8 @@ namespace EPS.Administration.APIAccess.Services
         Task<DeviceResponse> GetDevice(string token, string serialNumber);
         Task<DeviceMetadataResponse> GetDeviceMetadata(string token);
         Task<BaseResponse> UpdateDevice(string authenticationKey, Device device);
+        Task<GetStatusResponse> GetStatuses(string token);
+        Task<GetLocationResponse> GetLocations(string token);
+        Task<GetClassificationResponse> GetClassifications(string token);
     }
 }

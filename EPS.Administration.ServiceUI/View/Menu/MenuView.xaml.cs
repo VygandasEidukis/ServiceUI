@@ -1,4 +1,5 @@
 ﻿using EPS.Administration.ServiceUI.View.Device;
+using EPS.Administration.ServiceUI.View.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -80,12 +81,30 @@ namespace EPS.Administration.ServiceUI.View.Menu
             {
                 ImportExportMenuButton.Background = BackGroundBrush;
             }
+
+            if (BaseContent.Content.GetType() == typeof(StatusEditView))
+            {
+                DeviceStatuses.Background = BackGroundBrush;
+            }
+
+            if (BaseContent.Content.GetType() == typeof(ClassificationEditView))
+            {
+                DeviceClassifications.Background = BackGroundBrush;
+            }
+
+            if (BaseContent.Content.GetType() == typeof(LocationEditView))
+            {
+                DeviceLocations.Background = BackGroundBrush;
+            }
         }
 
         private void UndoMenuButtonColors()
         {
             DevicesMenuButton.Background = ForegroundBrush;
             ImportExportMenuButton.Background = ForegroundBrush;
+            DeviceStatuses.Background = ForegroundBrush;
+            DeviceClassifications.Background = ForegroundBrush;
+            DeviceLocations.Background = ForegroundBrush;
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -110,6 +129,24 @@ namespace EPS.Administration.ServiceUI.View.Menu
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Instance.DataContext = new LogInView();
+        }
+
+        private void StatusButtonClick(object sender, RoutedEventArgs e)
+        {
+            BaseContent.Content = new StatusEditView();
+            UpdateButtonBackgroud();
+        }
+
+        private void ClassificationButtonClick(object sender, RoutedEventArgs e)
+        {
+            BaseContent.Content = new ClassificationEditView();
+            UpdateButtonBackgroud();
+        }
+
+        private void LocationsButtonClick(object sender, RoutedEventArgs e)
+        {
+            BaseContent.Content = new LocationEditView();
+            UpdateButtonBackgroud();
         }
     }
 }

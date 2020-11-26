@@ -20,7 +20,15 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
 
         public DeviceUpdateViewModel(string serialNumber)
         {
-            GetAndAssignDevice(serialNumber);
+            if (string.IsNullOrEmpty(serialNumber))
+            {
+                Device = new Models.Device.Device();
+                DeviceEvents = new ObservableCollection<DeviceEvent>();
+            }
+            else
+            {
+                GetAndAssignDevice(serialNumber);
+            }
             GetDeviceMetadata();
         }
 

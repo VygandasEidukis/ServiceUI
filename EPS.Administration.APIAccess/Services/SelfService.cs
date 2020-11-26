@@ -18,6 +18,9 @@ namespace EPS.Administration.APIAccess.Services
         // GET Requests
         private const string GET_GETDEVICE = "api/Devices?serialNumber={0}";
         private const string GET_GETDEVICEMETADATA = "api/Devices/GetMetadata";
+        private const string GET_GETSTATUSES = "api/Devices/Statuses";
+        private const string GET_GETLOCATIONS = "api/Devices/Locations";
+        private const string GET_GETCLASSIFICATIONS = "api/Devices/Classifications";
 
         public async Task<GetDevicesResponse> GetDevices(string token, DeviceFilter filter)
         {
@@ -50,6 +53,21 @@ namespace EPS.Administration.APIAccess.Services
         public async Task<BaseResponse> UpdateDevice(string token, Device device)
         {
             return await RequestHandler.ProcessPostRequest<BaseResponse, Device>(POST_UPDATEDEVICE, device, token);
+        }
+
+        public async Task<GetStatusResponse> GetStatuses(string token)
+        {
+            return await RequestHandler.ProcessGetRequest<GetStatusResponse>(GET_GETSTATUSES, token);
+        }
+
+        public async Task<GetLocationResponse> GetLocations(string token)
+        {
+            return await RequestHandler.ProcessGetRequest<GetLocationResponse>(GET_GETLOCATIONS, token);
+        }
+
+        public async Task<GetClassificationResponse> GetClassifications(string token)
+        {
+            return await RequestHandler.ProcessGetRequest<GetClassificationResponse>(GET_GETCLASSIFICATIONS, token);
         }
     }
 }

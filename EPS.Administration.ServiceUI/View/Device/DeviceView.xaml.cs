@@ -91,5 +91,10 @@ namespace EPS.Administration.ServiceUI.View.Device
 
             MenuView.Instance.ChangeView(new DeviceUpdateView(item.SerialNumber));
         }
+
+        private void AddPromotionButtonClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+            MenuView.Instance.ChangeView(new DeviceUpdateView(null));
+        }
     }
 }

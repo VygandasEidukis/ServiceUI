@@ -63,6 +63,72 @@
                         </Button.Content>
                     </Button>
                     <Button
+                        x:Name="DeviceStatuses"
+                        HorizontalContentAlignment="Left"
+                        Background="White" Click="StatusButtonClick">
+                        <Button.Content>
+                            <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Width="40"
+                                    Height="25"
+                                    Margin="1,1,1,1"
+                                    HorizontalAlignment="Left"
+                                    Foreground="#000000"
+                                    Kind="CheckBoxOutline" />
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="Status"
+                                    TextWrapping="WrapWithOverflow" />
+                            </WrapPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button
+                        x:Name="DeviceClassifications"
+                        HorizontalContentAlignment="Left"
+                        Background="White" Click="ClassificationButtonClick">
+                        <Button.Content>
+                            <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Width="40"
+                                    Height="25"
+                                    Margin="1,1,1,1"
+                                    HorizontalAlignment="Left"
+                                    Foreground="#000000"
+                                    Kind="Group" />
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="Classification"
+                                    TextWrapping="WrapWithOverflow" />
+                            </WrapPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button
+                        x:Name="DeviceLocations"
+                        HorizontalContentAlignment="Left"
+                        Background="White" Click="LocationsButtonClick">
+                        <Button.Content>
+                            <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Width="40"
+                                    Height="25"
+                                    Margin="1,1,1,1"
+                                    HorizontalAlignment="Left"
+                                    Foreground="#000000"
+                                    Kind="Location" />
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="Locations"
+                                    TextWrapping="WrapWithOverflow" />
+                            </WrapPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button
                         x:Name="ImportExportMenuButton"
                         HorizontalContentAlignment="Left"
                         Background="White"

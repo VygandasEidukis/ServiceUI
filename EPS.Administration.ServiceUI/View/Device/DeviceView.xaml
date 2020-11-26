@@ -120,15 +120,15 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel
+        <DockPanel
             Grid.Row="4"
             Grid.Column="1"
-            HorizontalAlignment="Center"
-            Orientation="Horizontal">
+            HorizontalAlignment="Center">
 
             <Button
                 Width="50"
                 Height="25"
+                Background="#00F0F8FF"
                 BorderBrush="White"
                 Click="FirstPage">
                 <Button.Content>
@@ -144,6 +144,7 @@
             <Button
                 Width="50"
                 Height="25"
+                Background="#00F0F8FF"
                 BorderBrush="White"
                 Click="PreviousPage">
                 <Button.Content>
@@ -163,6 +164,7 @@
             <Button
                 Width="50"
                 Height="25"
+                Background="#00F0F8FF"
                 BorderBrush="White"
                 Click="NextPage">
                 <Button.Content>
@@ -177,6 +179,7 @@
             <Button
                 Width="50"
                 Height="25"
+                Background="#00F0F8FF"
                 BorderBrush="White"
                 Click="LastPage">
                 <Button.Content>
@@ -188,6 +191,24 @@
                         Kind="ArrowRightThick" />
                 </Button.Content>
             </Button>
-        </StackPanel>
+        </DockPanel>
+
+        <Button
+            Grid.Row="4"
+            Grid.Column="1"
+            Width="50"
+            Height="25"
+            HorizontalAlignment="Right"
+            Background="#00F0F8FF"
+            BorderBrush="#00F0F8FF" Click="AddPromotionButtonClick">
+            <Button.Content>
+                <materialDesign:PackIcon
+                    Width="40"
+                    Margin="1,1,1,1"
+                    HorizontalAlignment="Left"
+                    Foreground="#000000"
+                    Kind="PlusBox" />
+            </Button.Content>
+        </Button>
     </Grid>
 </UserControl>
