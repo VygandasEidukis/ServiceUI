@@ -14,6 +14,10 @@ namespace EPS.Administration.APIAccess.Services
         private const string POST_GETDEVICES = "api/Devices/GetFiltered";
         private const string POST_UPLOADEXTENDERDATA = "api/Files/uploadExtenderData";
         private const string POST_UPDATEDEVICE = "api/Devices/AddOrUpdate";
+        private const string POST_UPDATESTATUSES = "api/Devices/Statuses";
+        private const string POST_UPDATELOCATIONS = "api/Devices/Locations";
+        private const string POST_UPDATECLASSIFICATIONS = "api/Devices/Classifications";
+        private const string POST_UPDATEMODELS = "api/Devices/Models";
 
         // GET Requests
         private const string GET_GETDEVICE = "api/Devices?serialNumber={0}";
@@ -21,6 +25,7 @@ namespace EPS.Administration.APIAccess.Services
         private const string GET_GETSTATUSES = "api/Devices/Statuses";
         private const string GET_GETLOCATIONS = "api/Devices/Locations";
         private const string GET_GETCLASSIFICATIONS = "api/Devices/Classifications";
+        private const string GET_GETMODELS = "api/Devices/Models";
 
         public async Task<GetDevicesResponse> GetDevices(string token, DeviceFilter filter)
         {
@@ -68,6 +73,31 @@ namespace EPS.Administration.APIAccess.Services
         public async Task<GetClassificationResponse> GetClassifications(string token)
         {
             return await RequestHandler.ProcessGetRequest<GetClassificationResponse>(GET_GETCLASSIFICATIONS, token);
+        }
+
+        public async Task<BaseResponse> UpdateStatus(string token, DetailedStatus status)
+        {
+            return await RequestHandler.ProcessPostRequest<BaseResponse, DetailedStatus>(POST_UPDATESTATUSES, status, token);
+        }
+
+        public async Task<BaseResponse> UpdateLocation(string token, DeviceLocation location)
+        {
+            return await RequestHandler.ProcessPostRequest<BaseResponse, DeviceLocation>(POST_UPDATELOCATIONS, location, token);
+        }
+
+        public async Task<BaseResponse> UpdateClassification(string token, Classification classification)
+        {
+            return await RequestHandler.ProcessPostRequest<BaseResponse, Classification>(POST_UPDATECLASSIFICATIONS, classification, token);
+        }
+
+        public async Task<GetModelResponse> GetModels(string token)
+        {
+            return await RequestHandler.ProcessGetRequest<GetModelResponse>(GET_GETMODELS, token);
+        }
+
+        public async Task<BaseResponse> UpdateModel(string token, DeviceModel model)
+        {
+            return await RequestHandler.ProcessPostRequest<BaseResponse, DeviceModel>(POST_UPDATEMODELS, model, token);
         }
     }
 }

@@ -16,6 +16,11 @@ namespace EPS.Administration.APIAccess.Services
         Task<BaseResponse> UpdateDevice(string authenticationKey, Device device);
         Task<GetStatusResponse> GetStatuses(string token);
         Task<GetLocationResponse> GetLocations(string token);
+        Task<GetModelResponse> GetModels(string token);
         Task<GetClassificationResponse> GetClassifications(string token);
+        Task<BaseResponse> UpdateStatus(string token, DetailedStatus status);
+        Task<BaseResponse> UpdateLocation(string token, DeviceLocation location);
+        Task<BaseResponse> UpdateClassification(string token, Classification classification);
+        Task<BaseResponse> UpdateModel(string token, DeviceModel model);
     }
 }

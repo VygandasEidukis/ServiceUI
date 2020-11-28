@@ -1,5 +1,4 @@
-﻿using EPS.Administration.Models.Device;
-using EPS.Administration.ServiceUI.ViewModel.Metadata;
+﻿using EPS.Administration.ServiceUI.ViewModel.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,42 +15,38 @@ using System.Windows.Shapes;
 namespace EPS.Administration.ServiceUI.View.Metadata
 {
     /// <summary>
-    /// Interaction logic for LocationEditView.xaml
+    /// Interaction logic for ModelEditView.xaml
     /// </summary>
-    public partial class LocationEditView : UserControl
+    public partial class ModelEditView : UserControl
     {
-        public LocationMetadataViewModel Context
+
+        public ModelViewModel Context
         {
             get
             {
-                return DataContext as LocationMetadataViewModel;
+                return DataContext as ModelViewModel;
             }
         }
 
-        public LocationEditView()
+        public ModelEditView()
         {
             InitializeComponent();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            DataContext = new LocationMetadataViewModel();
-        }
-
-        private void FilterLocation_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Context.Filter(FilterLocation.Text);
+            DataContext = new ModelViewModel();
         }
 
         private async void Update(object sender, RoutedEventArgs e)
         {
-            await Context.AddOrUpdateLocation();
+            await Context.AddOrUpdateModels();
             UserControl_Loaded(null, null);
         }
 
         private void AddToList(object sender, RoutedEventArgs e)
         {
-            Context.Locations.Add(new DeviceLocation());
+            Context.Models.Add(new Models.Device.DeviceModel());
         }
     }
 }

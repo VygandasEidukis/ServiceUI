@@ -65,7 +65,8 @@
                     <Button
                         x:Name="DeviceStatuses"
                         HorizontalContentAlignment="Left"
-                        Background="White" Click="StatusButtonClick">
+                        Background="White"
+                        Click="StatusButtonClick">
                         <Button.Content>
                             <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
                                 <materialDesign:PackIcon
@@ -76,6 +77,7 @@
                                     Foreground="#000000"
                                     Kind="CheckBoxOutline" />
                                 <TextBlock
+                                    x:Name="StatusText"
                                     VerticalAlignment="Center"
                                     FontSize="15"
                                     FontWeight="Bold"
@@ -87,7 +89,8 @@
                     <Button
                         x:Name="DeviceClassifications"
                         HorizontalContentAlignment="Left"
-                        Background="White" Click="ClassificationButtonClick">
+                        Background="White"
+                        Click="ClassificationButtonClick">
                         <Button.Content>
                             <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
                                 <materialDesign:PackIcon
@@ -98,6 +101,7 @@
                                     Foreground="#000000"
                                     Kind="Group" />
                                 <TextBlock
+                                    x:Name="ClassificationText"
                                     VerticalAlignment="Center"
                                     FontSize="15"
                                     FontWeight="Bold"
@@ -107,9 +111,33 @@
                         </Button.Content>
                     </Button>
                     <Button
+                        x:Name="DeviceModels"
+                        HorizontalContentAlignment="Left"
+                        Background="White" Click="ModelsClick">
+                        <Button.Content>
+                            <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Width="40"
+                                    Height="25"
+                                    Margin="1,1,1,1"
+                                    HorizontalAlignment="Left"
+                                    Foreground="#000000"
+                                    Kind="Calculator" />
+                                <TextBlock
+                                    x:Name="ModelsText"
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="Models"
+                                    TextWrapping="WrapWithOverflow" />
+                            </WrapPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button
                         x:Name="DeviceLocations"
                         HorizontalContentAlignment="Left"
-                        Background="White" Click="LocationsButtonClick">
+                        Background="White"
+                        Click="LocationsButtonClick">
                         <Button.Content>
                             <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
                                 <materialDesign:PackIcon
@@ -120,6 +148,7 @@
                                     Foreground="#000000"
                                     Kind="Location" />
                                 <TextBlock
+                                    x:Name="LocationsText"
                                     VerticalAlignment="Center"
                                     FontSize="15"
                                     FontWeight="Bold"

@@ -59,12 +59,20 @@ namespace EPS.Administration.ServiceUI.View.Menu
                 mainMenuWindow.Width = 40;
                 DevicesText.Visibility = Visibility.Collapsed;
                 ImportExportText.Visibility = Visibility.Collapsed;
+                ModelsText.Visibility = Visibility.Collapsed;
+                ClassificationText.Visibility = Visibility.Collapsed;
+                LocationsText.Visibility = Visibility.Collapsed;
+                StatusText.Visibility = Visibility.Collapsed;
             }
             else
             {
                 mainMenuWindow.Width = 160;
                 DevicesText.Visibility = Visibility.Visible;
                 ImportExportText.Visibility = Visibility.Visible;
+                ModelsText.Visibility = Visibility.Visible;
+                ClassificationText.Visibility = Visibility.Visible;
+                LocationsText.Visibility = Visibility.Visible;
+                StatusText.Visibility = Visibility.Visible;
             }
         }
 
@@ -96,6 +104,11 @@ namespace EPS.Administration.ServiceUI.View.Menu
             {
                 DeviceLocations.Background = BackGroundBrush;
             }
+
+            if (BaseContent.Content.GetType() == typeof(ModelEditView))
+            {
+                DeviceModels.Background = BackGroundBrush;
+            }
         }
 
         private void UndoMenuButtonColors()
@@ -105,6 +118,7 @@ namespace EPS.Administration.ServiceUI.View.Menu
             DeviceStatuses.Background = ForegroundBrush;
             DeviceClassifications.Background = ForegroundBrush;
             DeviceLocations.Background = ForegroundBrush;
+            DeviceModels.Background = ForegroundBrush;
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -146,6 +160,12 @@ namespace EPS.Administration.ServiceUI.View.Menu
         private void LocationsButtonClick(object sender, RoutedEventArgs e)
         {
             BaseContent.Content = new LocationEditView();
+            UpdateButtonBackgroud();
+        }
+
+        private void ModelsClick(object sender, RoutedEventArgs e)
+        {
+            BaseContent.Content = new ModelEditView();
             UpdateButtonBackgroud();
         }
     }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace EPS.Administration.ServiceUI.ViewModel.Metadata
 {
@@ -49,6 +50,31 @@ namespace EPS.Administration.ServiceUI.ViewModel.Metadata
                         CurrentLocation = Locations[0];
                     }
                 }
+            }
+            catch (ServiceException ex)
+            {
+                //TODO: HIGH Add logging
+                MainWindow.Instance.AddNotification(ex);
+            }
+        }
+
+        internal async Task AddOrUpdateLocation()
+        {
+            var service = ServicesManager.SelfService;
+            try
+            {
+                if (CurrentLocation == null || string.IsNullOrEmpty(CurrentLocation.Name))
+                {
+                    MainWindow.Instance.AddNotification(new BaseResponse()
+                    {
+                        Error = ErrorCode.ValidationError,
+                        Message = "Name and details cannot be empty."
+                    });
+                    return;
+                }
+
+                var locationsResponse = await service.UpdateLocation(MainWindow.Instance.AuthenticationKey, CurrentLocation);
+                MainWindow.Instance.AddNotification(locationsResponse ?? new BaseResponse() { Error = ErrorCode.InternalError, Message = "Failed to receive response from host." });
             }
             catch (ServiceException ex)
             {

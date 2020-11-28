@@ -36,5 +36,16 @@ namespace EPS.Administration.ServiceUI.View.Metadata
         {
             DataContext = new StatusMetadataViewModel();
         }
+
+        private async void Update(object sender, RoutedEventArgs e)
+        {
+            await Context.AddOrUpdateClassification();
+            UserControl_Loaded(null, null);
+        }
+
+        private void AddToList(object sender, RoutedEventArgs e)
+        {
+            Context.Statuses.Add(new Models.Device.DetailedStatus());
+        }
     }
 }
