@@ -1,4 +1,6 @@
-﻿using PropertyChanged;
+﻿using EPS.Administration.APIAccess.Services;
+using EPS.Administration.Models.APICommunication;
+using PropertyChanged;
 using System.ComponentModel;
 
 namespace EPS.Administration.ServiceUI.ViewModel
@@ -7,12 +9,35 @@ namespace EPS.Administration.ServiceUI.ViewModel
     public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
-        private int myVar;
+        public string Token { get => MainWindow.Instance.AuthenticationKey; }
+        public ISelfService Service { get => ServicesManager.SelfService; }
 
+        private int myVar;
         public int MyProperty
         {
             get { return myVar; }
             set { myVar = value; }
+        }
+
+        public void Notify(string text)
+        {
+            if (!string.IsNullOrEmpty(text))
+            {
+                MainWindow.Instance.AddNotification(new BaseResponse { Message = text });
+            }
+        }
+
+        public void Notify(ErrorCode errorCode, string message)
+        {
+            Notify(new BaseResponse { Error = errorCode, Message = message });
+        }
+
+        public void Notify(BaseResponse response)
+        {
+            if (response != null)
+            {
+                MainWindow.Instance.AddNotification(response);
+            }
         }
 
     }

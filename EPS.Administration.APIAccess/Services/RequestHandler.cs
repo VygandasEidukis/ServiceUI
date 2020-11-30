@@ -48,7 +48,7 @@ namespace EPS.Administration.APIAccess.Services
                 HttpClient httpClient = string.IsNullOrEmpty(token) ? GetClient() : GetClient(token);
 
                 var content = new MultipartFormDataContent();
-                content.Add(new StreamContent(package), "file", "file");
+                content.Add(new StreamContent(package), "file", fileName);
 
                 var response = await httpClient.PostAsync(request, content);
                 if (response.StatusCode != HttpStatusCode.OK)

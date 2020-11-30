@@ -32,7 +32,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Metadata
                     return;
                 }
 
-                var locationsResponse = await service.UpdateClassification(MainWindow.Instance.AuthenticationKey, CurrentClassification);
+                var locationsResponse = await service.UpdateClassification(Token, CurrentClassification);
                 MainWindow.Instance.AddNotification(locationsResponse ?? new BaseResponse() { Error = ErrorCode.InternalError, Message = "Failed to receive response from host." });
             }
             catch (ServiceException ex)
@@ -49,7 +49,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Metadata
             var service = ServicesManager.SelfService;
             try
             {
-                GetClassificationResponse classificationResponse = await service.GetClassifications(MainWindow.Instance.AuthenticationKey);
+                GetClassificationResponse classificationResponse = await service.GetClassifications(Token);
 
                 if (classificationResponse == null || classificationResponse.Error != ErrorCode.OK)
                 {

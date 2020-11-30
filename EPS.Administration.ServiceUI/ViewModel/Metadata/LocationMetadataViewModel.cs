@@ -31,7 +31,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Metadata
             var service = ServicesManager.SelfService;
             try
             {
-                var locationsResponse = await service.GetLocations(MainWindow.Instance.AuthenticationKey);
+                var locationsResponse = await service.GetLocations(Token);
 
                 if (locationsResponse == null || locationsResponse.Error != ErrorCode.OK)
                 {
@@ -73,7 +73,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Metadata
                     return;
                 }
 
-                var locationsResponse = await service.UpdateLocation(MainWindow.Instance.AuthenticationKey, CurrentLocation);
+                var locationsResponse = await service.UpdateLocation(Token, CurrentLocation);
                 MainWindow.Instance.AddNotification(locationsResponse ?? new BaseResponse() { Error = ErrorCode.InternalError, Message = "Failed to receive response from host." });
             }
             catch (ServiceException ex)

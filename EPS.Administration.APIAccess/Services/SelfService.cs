@@ -18,6 +18,7 @@ namespace EPS.Administration.APIAccess.Services
         private const string POST_UPDATELOCATIONS = "api/Devices/Locations";
         private const string POST_UPDATECLASSIFICATIONS = "api/Devices/Classifications";
         private const string POST_UPDATEMODELS = "api/Devices/Models";
+        private const string POST_UPLOADDOCUMENT = "api/Files/Document";
 
         // GET Requests
         private const string GET_GETDEVICE = "api/Devices?serialNumber={0}";
@@ -98,6 +99,13 @@ namespace EPS.Administration.APIAccess.Services
         public async Task<BaseResponse> UpdateModel(string token, DeviceModel model)
         {
             return await RequestHandler.ProcessPostRequest<BaseResponse, DeviceModel>(POST_UPDATEMODELS, model, token);
+        }
+
+        public async Task<FileUploadResponse> UploadDocument(string token, string filePath)
+        {
+            var name = Path.GetFileName(filePath);
+            var file = File.Open(filePath, FileMode.Open);
+            return await RequestHandler.ProcessPostFileRequest<FileUploadResponse, FileStream>(POST_UPLOADDOCUMENT, file, name, token);
         }
     }
 }

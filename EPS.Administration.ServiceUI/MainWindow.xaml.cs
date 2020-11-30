@@ -89,7 +89,10 @@ namespace EPS.Administration.ServiceUI
 
                     App.Current.Dispatcher.Invoke((Action)delegate
                     {
-                        _responseQueue.RemoveAt(0);
+                        if(_responseQueue.Count > 0)
+                        {
+                            _responseQueue.RemoveAt(0);
+                        }
                     });
                 }
             }

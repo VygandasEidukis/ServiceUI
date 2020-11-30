@@ -30,7 +30,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
 
             try
             {
-                GetDevicesResponse deviceResponse = await service.GetDevices(MainWindow.Instance.AuthenticationKey, Filter);
+                GetDevicesResponse deviceResponse = await service.GetDevices(Token, Filter);
 
                 if (deviceResponse == null || deviceResponse.Error != ErrorCode.OK)
                 {

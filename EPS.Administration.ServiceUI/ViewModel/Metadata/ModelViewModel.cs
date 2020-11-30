@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EPS.Administration.ServiceUI.ViewModel.Metadata
 {
-    public class ModelViewModel
+    public class ModelViewModel : BaseViewModel
     {
         public ObservableCollection<DeviceModel> Models { get; set; }
         public DeviceModel CurrentModel { get; set; }
@@ -35,7 +35,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Metadata
                     return;
                 }
 
-                var locationsResponse = await service.UpdateModel(MainWindow.Instance.AuthenticationKey, CurrentModel);
+                var locationsResponse = await service.UpdateModel(Token, CurrentModel);
                 MainWindow.Instance.AddNotification(locationsResponse ?? new BaseResponse() { Error = ErrorCode.InternalError, Message = "Failed to receive response from host." });
             }
             catch (ServiceException ex)
@@ -52,7 +52,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Metadata
             var service = ServicesManager.SelfService;
             try
             {
-                GetModelResponse modelResponse = await service.GetModels(MainWindow.Instance.AuthenticationKey);
+                GetModelResponse modelResponse = await service.GetModels(Token);
 
                 if (modelResponse == null || modelResponse.Error != ErrorCode.OK)
                 {

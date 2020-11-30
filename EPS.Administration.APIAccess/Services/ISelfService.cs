@@ -22,5 +22,6 @@ namespace EPS.Administration.APIAccess.Services
         Task<BaseResponse> UpdateLocation(string token, DeviceLocation location);
         Task<BaseResponse> UpdateClassification(string token, Classification classification);
         Task<BaseResponse> UpdateModel(string token, DeviceModel model);
+        Task<FileUploadResponse> UploadDocument(string token, string filePath);
     }
 }

@@ -1,10 +1,14 @@
 ﻿using EPS.Administration.APIAccess.Models.Exceptions;
+using EPS.Administration.APIAccess.Services;
 using EPS.Administration.Models.APICommunication;
 using EPS.Administration.Models.Device;
 using EPS.Administration.ServiceUI.View.Menu;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace EPS.Administration.ServiceUI.ViewModel.Device
 {
@@ -17,6 +21,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
         public ObservableCollection<DeviceLocation> Locations { get; set; }
         public ObservableCollection<DeviceModel> Models { get; set; }
         public ObservableCollection<DetailedStatus> Statuses { get; set; }
+        public FileDefinition Document { get; set; }
 
         public DeviceUpdateViewModel(string serialNumber)
         {
@@ -34,14 +39,13 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
 
         private async void GetDeviceMetadata()
         {
-            var service = ServicesManager.SelfService;
             try
             {
-                DeviceMetadataResponse metadataResponse = await service.GetDeviceMetadata(MainWindow.Instance.AuthenticationKey);
+                DeviceMetadataResponse metadataResponse = await Service.GetDeviceMetadata(Token);
 
                 if (metadataResponse == null || metadataResponse.Error != ErrorCode.OK)
                 {
-                    MainWindow.Instance.AddNotification(metadataResponse);
+                    Notify(metadataResponse);
                 }
                 else
                 {
@@ -58,7 +62,21 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
             catch (ServiceException ex)
             {
                 //TODO: HIGH Add logging
-                MainWindow.Instance.AddNotification(ex);
+                Notify(ex.Message);
+            }
+        }
+
+        internal void AddDocument(string filePath, string fileName)
+        {
+            Document = new FileDefinition()
+            {
+                FileName = fileName,
+                Path = filePath
+            };
+
+            if(!File.Exists(Document.Path))
+            {
+                Notify($"'{ Document.Path ?? "EMPTY" }' does not exist");
             }
         }
 
@@ -67,23 +85,23 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
 
             if (string.IsNullOrEmpty(serialNumber))
             {
-                MainWindow.Instance.AddNotification(new BaseResponse() { Error = ErrorCode.InternalError, Message = "Did not receive serial number" });
+                Notify(ErrorCode.InternalError, "Did not receive serial number");
                 return;
             }
 
-            var service = ServicesManager.SelfService;
             try
             {
-                DeviceResponse baseResponse = await service.GetDevice(MainWindow.Instance.AuthenticationKey, serialNumber);
+                DeviceResponse baseResponse = await Service.GetDevice(Token, serialNumber);
 
                 if (baseResponse == null || baseResponse.Error != ErrorCode.OK)
                 {
-                    MainWindow.Instance.AddNotification(baseResponse ?? new BaseResponse() { Error = ErrorCode.InternalError, Message = "Failed to receive response from host." });
+                    Notify(baseResponse);
                     MainWindow.Instance.ChangeView(new MenuView());
                 }
                 else
                 {
                     Device = baseResponse.RecievedDevice;
+                    Document = Device.Document;
                     DeviceEvents = new ObservableCollection<DeviceEvent>();
                     if (Device.DeviceEvents != null)
                     {
@@ -94,41 +112,78 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
             catch (ServiceException ex)
             {
                 //TODO: HIGH Add logging
-                MainWindow.Instance.AddNotification(ex);
+                Notify(ex.Message);
             }
         }
 
         public async void AddOrUpdate()
         {
+            var doc = await UploadDocument();
+            if (doc != null)
+            {
+                Device.Document = doc;
+            }
+
             Device.DeviceEvents = new List<DeviceEvent>();
             foreach (var evnt in DeviceEvents)
             {
                 Device.DeviceEvents.Add(evnt);
             }
 
-            var service = ServicesManager.SelfService;
             try
             {
-                BaseResponse baseResponse = await service.UpdateDevice(MainWindow.Instance.AuthenticationKey, Device);
+                BaseResponse baseResponse = await Service.UpdateDevice(Token, Device);
 
                 if (baseResponse == null || baseResponse.Error != ErrorCode.OK)
                 {
-                    MainWindow.Instance.AddNotification(baseResponse ?? new BaseResponse() { Error = ErrorCode.InternalError, Message = $"Failed to update device. {Device.SerialNumber}" });
+                    Notify(baseResponse);
                     MainWindow.Instance.ChangeView(new MenuView());
                 }
                 else
                 {
-                    MainWindow.Instance.AddNotification(new BaseResponse() { Error = ErrorCode.OK, Message = $"Device {Device.SerialNumber} was updated successfully." });
+                    Notify(ErrorCode.OK, $"Device {Device.SerialNumber} was updated successfully.");
                 }
             }
             catch (ServiceException ex)
             {
                 //TODO: HIGH Add logging
-                MainWindow.Instance.AddNotification(ex);
+                Notify(ex.Message);
             }
             finally
             {
                 MainWindow.Instance.ChangeView(new MenuView());
+            }
+        }
+
+        private async Task<FileDefinition> UploadDocument()
+        {
+            if (Document == null)
+            {
+                return null;
+            }
+
+            if (string.IsNullOrEmpty(Document.FileName))
+            {
+                return null;
+            }
+
+            if (Device.Document != null)
+            {
+                if (Device.Document.StoredFileName == Document.FileName)
+                {
+                    return null;
+                }
+            }
+
+            var fileUploadResponse = await Service.UploadDocument(Token, Document.Path);
+            if (fileUploadResponse.Error == ErrorCode.OK)
+            {
+                return fileUploadResponse.UploadedFileInfo;
+            }
+            else
+            {
+                Notify(fileUploadResponse);
+                return null;
             }
         }
     }

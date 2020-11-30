@@ -27,6 +27,8 @@
                 <RowDefinition Height="100" />
                 <RowDefinition Height="10" />
                 <RowDefinition Height="170" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="20" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="25" />
             </Grid.RowDefinitions>
@@ -70,9 +72,23 @@
             <Calendar
                 Grid.Row="11"
                 Grid.Column="1"
-                
                 DisplayDate="{Binding Device.SfDate}"
                 SelectedDate="{Binding Device.SfDate}" />
+
+            <TextBlock Grid.Row="13" Text="Document:" />
+            <DockPanel Grid.Row="13" Grid.Column="1">
+                <TextBlock
+                    x:Name="SelectedItem"
+                    Width="122"
+                    DockPanel.Dock="Left"
+                    Text="{Binding Document}" />
+                <Button
+                    Width="50"
+                    HorizontalAlignment="Right"
+                    Click="SelectDocument"
+                    Content="select..."
+                    DockPanel.Dock="Right" />
+            </DockPanel>
         </Grid>
     </Grid>
 </UserControl>

@@ -24,7 +24,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Metadata
             var service = ServicesManager.SelfService;
             try
             {
-                var statusResponse = await service.GetStatuses(MainWindow.Instance.AuthenticationKey);
+                var statusResponse = await service.GetStatuses(Token);
 
                 if (statusResponse == null || statusResponse.Error != ErrorCode.OK)
                 {
@@ -65,7 +65,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Metadata
                     return;
                 }
 
-                var statusResponse = await service.UpdateStatus(MainWindow.Instance.AuthenticationKey, CurrentStatus);
+                var statusResponse = await service.UpdateStatus(Token, CurrentStatus);
                 MainWindow.Instance.AddNotification(statusResponse ?? new BaseResponse() { Error = ErrorCode.InternalError, Message = "Failed to receive response from host." });
             }
             catch (ServiceException ex)
