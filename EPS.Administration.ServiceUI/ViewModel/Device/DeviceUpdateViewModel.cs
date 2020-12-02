@@ -2,6 +2,7 @@
 using EPS.Administration.APIAccess.Services;
 using EPS.Administration.Models.APICommunication;
 using EPS.Administration.Models.Device;
+using EPS.Administration.ServiceUI.Model;
 using EPS.Administration.ServiceUI.View.Menu;
 using System;
 using System.Collections.Generic;
@@ -14,30 +15,49 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
 {
     public class DeviceUpdateViewModel : BaseViewModel
     {
+        //MULTI DEVICES
+        public Models.Device.Device CurrentDevice { get; set; }
+        public ObservableCollection<Models.Device.Device> MultiDevices { get; set; }
+        public ObservableCollection<SerialNumberModel> SerialNumbers { get; set; }
+        public SerialNumberModel SerialNumber { get; set; }
+
         public Models.Device.Device Device { get; set; }
         public ObservableCollection<DeviceEvent> DeviceEvents{ get; set; }
+
         //Metadata
         public ObservableCollection<Classification> Classifications { get; set; }
         public ObservableCollection<DeviceLocation> Locations { get; set; }
         public ObservableCollection<DeviceModel> Models { get; set; }
         public ObservableCollection<DetailedStatus> Statuses { get; set; }
         public FileDefinition Document { get; set; }
+        public bool IsEdit { get; set; }
 
         public DeviceUpdateViewModel(string serialNumber)
         {
-            if (string.IsNullOrEmpty(serialNumber))
+            SerialNumbers = new ObservableCollection<SerialNumberModel>();
+            Init(serialNumber);
+        }
+
+        private async void Init(string serialNumber)
+        {
+            CurrentDevice = new Models.Device.Device();
+            MultiDevices = new ObservableCollection<Models.Device.Device>();
+
+            IsEdit = !string.IsNullOrEmpty(serialNumber);
+            if (IsEdit)
+            {
+                await GetAndAssignDevice(serialNumber);
+                CurrentDevice = Device;
+            }
+            else
             {
                 Device = new Models.Device.Device();
                 DeviceEvents = new ObservableCollection<DeviceEvent>();
             }
-            else
-            {
-                GetAndAssignDevice(serialNumber);
-            }
-            GetDeviceMetadata();
+            await GetDeviceMetadata();
         }
 
-        private async void GetDeviceMetadata()
+        private async Task GetDeviceMetadata()
         {
             try
             {
@@ -80,7 +100,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
             }
         }
 
-        private async void GetAndAssignDevice(string serialNumber)
+        private async Task GetAndAssignDevice(string serialNumber)
         {
 
             if (string.IsNullOrEmpty(serialNumber))
@@ -102,6 +122,8 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
                 {
                     Device = baseResponse.RecievedDevice;
                     Document = Device.Document;
+                    SerialNumber = new SerialNumberModel();
+                    SerialNumber.SerialNumber = Device.SerialNumber;
                     DeviceEvents = new ObservableCollection<DeviceEvent>();
                     if (Device.DeviceEvents != null)
                     {
@@ -116,7 +138,20 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
             }
         }
 
-        public async void AddOrUpdate()
+        public async void AddOrUpdateAll()
+        {
+            foreach (var device in MultiDevices)
+            {
+                Device.SerialNumber = device.SerialNumber;
+                Device.Model = device.Model;
+                Device.OwnedBy = device.OwnedBy;
+                Device.AcquisitionDate = device.AcquisitionDate;
+                await AddOrUpdate();
+            }
+            MainWindow.Instance.ChangeView(new MenuView());
+        }
+
+        public async Task AddOrUpdate()
         {
             var doc = await UploadDocument();
             if (doc != null)
@@ -151,7 +186,10 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
             }
             finally
             {
-                MainWindow.Instance.ChangeView(new MenuView());
+                if (IsEdit)
+                {
+                    MainWindow.Instance.ChangeView(new MenuView());
+                }
             }
         }
 
@@ -169,7 +207,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
 
             if (Device.Document != null)
             {
-                if (Device.Document.StoredFileName == Document.FileName)
+                if (Device.Document.StoredFileName == Document.StoredFileName)
                 {
                     return null;
                 }

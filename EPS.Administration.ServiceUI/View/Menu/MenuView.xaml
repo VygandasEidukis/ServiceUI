@@ -113,7 +113,8 @@
                     <Button
                         x:Name="DeviceModels"
                         HorizontalContentAlignment="Left"
-                        Background="White" Click="ModelsClick">
+                        Background="White"
+                        Click="ModelsClick">
                         <Button.Content>
                             <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
                                 <materialDesign:PackIcon
@@ -177,6 +178,31 @@
                                     FontSize="15"
                                     FontWeight="Bold"
                                     Text="Import devices"
+                                    TextWrapping="WrapWithOverflow" />
+                            </WrapPanel>
+                        </Button.Content>
+                    </Button>
+
+                    <Button
+                        x:Name="StatisticsMenuButton"
+                        HorizontalContentAlignment="Left"
+                        Background="White"
+                        Click="ReportsMenu_Click">
+                        <Button.Content>
+                            <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Width="40"
+                                    Height="25"
+                                    Margin="1,1,1,1"
+                                    HorizontalAlignment="Left"
+                                    Foreground="#000000"
+                                    Kind="ChartBellCurve" />
+                                <TextBlock
+                                    Name="StatisticsText"
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="Reports"
                                     TextWrapping="WrapWithOverflow" />
                             </WrapPanel>
                         </Button.Content>

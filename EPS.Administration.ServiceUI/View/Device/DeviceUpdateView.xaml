@@ -35,22 +35,25 @@
             <Button
                 Width="110"
                 Margin="5,0,5,0"
-                Content="Identification info" Click="Button_Click" />
+                Click="Button_Click"
+                Content="Identification info" />
             <Button
                 Width="110"
                 Margin="5,0,5,0"
-                Content="Detailed data" Click="Button_Click_1" />
+                Click="Button_Click_1"
+                Content="Detailed data" />
             <Button
                 Width="110"
                 Margin="5,0,5,0"
-                Content="Events" Click="Button_Click_2" />
+                Click="Button_Click_2"
+                Content="Events" />
             <Button
                 Width="110"
-                
                 Margin="5,0,5,0"
                 HorizontalAlignment="Right"
                 Background="Lime"
-                Content="Add or Update" Click="AddOrUpdateButton" />
+                Click="AddOrUpdateButton"
+                Content="Add or Update" />
         </DockPanel>
 
         <StackPanel
@@ -58,11 +61,20 @@
             Grid.Column="1"
             MinWidth="500"
             MaxWidth="600" />
-        <UserControl
-            x:Name="DeviceUpdateContent"
+
+
+        <ScrollViewer
             Grid.Row="4"
             Grid.Column="1"
-            Width="600"
-            Background="#DBDBE3" />
+            Width="615"
+            Margin="15,0,0,0">
+            <UserControl
+                x:Name="DeviceUpdateContent"
+                Background="#DBDBE3"
+                ScrollViewer.CanContentScroll="True"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                ScrollViewer.VerticalScrollBarVisibility="Auto" />
+        </ScrollViewer>
+
     </Grid>
 </UserControl>

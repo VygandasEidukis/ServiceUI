@@ -168,5 +168,10 @@ namespace EPS.Administration.ServiceUI.View.Menu
             BaseContent.Content = new ModelEditView();
             UpdateButtonBackgroud();
         }
+
+        private void ReportsMenu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

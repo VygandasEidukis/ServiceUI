@@ -61,7 +61,13 @@ namespace EPS.Administration.ServiceUI.View.Device
 
         private void AddOrUpdateButton(object sender, RoutedEventArgs e)
         {
-            Context.AddOrUpdate();
+            if (Context.IsEdit)
+            {
+                Context.AddOrUpdate();
+            }else
+            {
+                Context.AddOrUpdateAll();
+            }
         }
     }
 

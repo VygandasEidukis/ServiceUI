@@ -10,7 +10,7 @@
     Loaded="UserControl_Loaded"
     mc:Ignorable="d">
     <Grid>
-        <Grid Width="350">
+        <Grid Width="350" ScrollViewer.CanContentScroll="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -24,6 +24,10 @@
                 <RowDefinition Height="20" />
                 <RowDefinition Height="10" />
                 <RowDefinition Height="180" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="200" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="25" />
             </Grid.RowDefinitions>
@@ -31,9 +35,11 @@
 
             <TextBlock Grid.Row="1" Text="Serial number:" />
             <TextBox
+                x:Name="SerialNumberBox"
                 Grid.Row="1"
                 Grid.Column="1"
-                Text="{Binding Device.SerialNumber}" />
+                Text="{Binding SerialNumber.SerialNumber}"
+                TextChanged="SerialNumber_Changed" />
 
             <TextBlock Grid.Row="3" Text="Model:" />
             <ComboBox
@@ -41,7 +47,7 @@
                 Grid.Row="3"
                 Grid.Column="1"
                 ItemsSource="{Binding Models}"
-                SelectedItem="{Binding Device.Model, Mode=TwoWay}"
+                SelectedItem="{Binding CurrentDevice.Model, Mode=TwoWay}"
                 SelectedValuePath="Id" />
 
             <TextBlock Grid.Row="5" Text="Owned by:" />
@@ -50,14 +56,40 @@
                 Grid.Row="5"
                 Grid.Column="1"
                 ItemsSource="{Binding Locations}"
-                SelectedItem="{Binding Device.OwnedBy}" />
+                SelectedItem="{Binding CurrentDevice.OwnedBy}" />
 
             <TextBlock Grid.Row="7" Text="Acquisition date:" />
             <Calendar
                 Grid.Row="7"
                 Grid.Column="1"
-                DisplayDate="{Binding Device.AcquisitionDate}"
-                SelectedDate="{Binding Device.AcquisitionDate}" />
+                DisplayDate="{Binding CurrentDevice.AcquisitionDate}"
+                SelectedDate="{Binding CurrentDevice.AcquisitionDate}" />
+
+            <Button
+                x:Name="AddDeviceButton"
+                Grid.Row="9"
+                Grid.Column="1"
+                Width="80"
+                HorizontalAlignment="Right"
+                Click="AddDevice_Button"
+                Content="Add device" />
+            <Grid
+                x:Name="MulitpleDeviceCreation"
+                Grid.Row="11"
+                Grid.ColumnSpan="2">
+                <ListBox
+                    x:Name="MultiDevicesList"
+                    IsSynchronizedWithCurrentItem="True"
+                    ItemsSource="{Binding SerialNumbers}"
+                    SelectedItem="{Binding SerialNumber, Mode=TwoWay, NotifyOnSourceUpdated=True}"
+                    SelectionChanged="MultiDevicesList_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding SerialNumber}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>
