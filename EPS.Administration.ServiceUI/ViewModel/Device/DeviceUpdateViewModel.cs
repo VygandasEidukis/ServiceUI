@@ -148,6 +148,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
                 Device.AcquisitionDate = device.AcquisitionDate;
                 await AddOrUpdate();
             }
+
             MainWindow.Instance.ChangeView(new MenuView());
         }
 
@@ -172,7 +173,6 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
                 if (baseResponse == null || baseResponse.Error != ErrorCode.OK)
                 {
                     Notify(baseResponse);
-                    MainWindow.Instance.ChangeView(new MenuView());
                 }
                 else
                 {

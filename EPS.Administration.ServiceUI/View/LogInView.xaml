@@ -76,7 +76,8 @@
                     Width="100"
                     Height="20"
                     VerticalAlignment="Bottom"
-                    Content="Log in" Click="LogInButton" />
+                    Click="LogInButton"
+                    Content="Log in" />
             </Grid>
         </Grid>
     </Grid>

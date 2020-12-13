@@ -13,9 +13,9 @@ namespace EPS.Administration.APIAccess.Services
 {
     internal class RequestHandler : BaseService
     {
-        public static async Task<T> ProcessPostRequest<T, G>(string request, G package, string token = null) where T : class where G : class
+        public static async Task<RESPONSE> ProcessPostRequest<RESPONSE, PACKAGE>(string request, PACKAGE package, string token = null) where RESPONSE : class where PACKAGE : class
         {
-            T result = default(T);
+            RESPONSE result = default(RESPONSE);
             try
             {
                 HttpClient httpClient = string.IsNullOrEmpty(token) ? GetClient() : GetClient(token);
@@ -28,7 +28,7 @@ namespace EPS.Administration.APIAccess.Services
                 }
 
                 string apiResponse = await response.Content.ReadAsStringAsync();
-                result = JsonMessageHandler<T>(apiResponse);
+                result = JsonMessageHandler<RESPONSE>(apiResponse);
 
                 response.Dispose();
             }
@@ -40,9 +40,9 @@ namespace EPS.Administration.APIAccess.Services
             return result;
         }
 
-        public static async Task<T> ProcessPostFileRequest<T, G>(string request, G package, string fileName, string token = null) where T : class where G : FileStream
+        public static async Task<RESPONSE> ProcessPostFileRequest<RESPONSE, FILE>(string request, FILE package, string fileName, string token = null) where RESPONSE : class where FILE : FileStream
         {
-            T result = default(T);
+            RESPONSE result = default(RESPONSE);
             try
             {
                 HttpClient httpClient = string.IsNullOrEmpty(token) ? GetClient() : GetClient(token);
@@ -57,7 +57,7 @@ namespace EPS.Administration.APIAccess.Services
                 }
 
                 string apiResponse = await response.Content.ReadAsStringAsync();
-                result = JsonMessageHandler<T>(apiResponse);
+                result = JsonMessageHandler<RESPONSE>(apiResponse);
 
                 response.Dispose();
             }
@@ -69,9 +69,9 @@ namespace EPS.Administration.APIAccess.Services
             return result;
         }
 
-        public static async Task<T> ProcessGetRequest<T>(string request, string token = null) where T : class
+        public static async Task<RESPONSE> ProcessGetRequest<RESPONSE>(string request, string token = null) where RESPONSE : class
         {
-            T result = default(T);
+            RESPONSE result = default(RESPONSE);
             try
             {
                 HttpClient httpClient = string.IsNullOrEmpty(token) ? GetClient() : GetClient(token);
@@ -83,7 +83,7 @@ namespace EPS.Administration.APIAccess.Services
                 }
 
                 string apiResponse = await response.Content.ReadAsStringAsync();
-                result = JsonMessageHandler<T>(apiResponse);
+                result = JsonMessageHandler<RESPONSE>(apiResponse);
 
                 response.Dispose();
             }

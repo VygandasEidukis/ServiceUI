@@ -200,7 +200,8 @@
             Height="25"
             HorizontalAlignment="Right"
             Background="#00F0F8FF"
-            BorderBrush="#00F0F8FF" Click="AddPromotionButtonClick">
+            BorderBrush="#00F0F8FF"
+            Click="AddPromotionButtonClick">
             <Button.Content>
                 <materialDesign:PackIcon
                     Width="40"

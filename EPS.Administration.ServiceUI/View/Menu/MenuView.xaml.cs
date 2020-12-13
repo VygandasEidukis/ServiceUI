@@ -63,6 +63,7 @@ namespace EPS.Administration.ServiceUI.View.Menu
                 ClassificationText.Visibility = Visibility.Collapsed;
                 LocationsText.Visibility = Visibility.Collapsed;
                 StatusText.Visibility = Visibility.Collapsed;
+                StatisticsText.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -73,6 +74,7 @@ namespace EPS.Administration.ServiceUI.View.Menu
                 ClassificationText.Visibility = Visibility.Visible;
                 LocationsText.Visibility = Visibility.Visible;
                 StatusText.Visibility = Visibility.Visible;
+                StatisticsText.Visibility = Visibility.Visible;
             }
         }
 
@@ -109,6 +111,11 @@ namespace EPS.Administration.ServiceUI.View.Menu
             {
                 DeviceModels.Background = BackGroundBrush;
             }
+
+            if (BaseContent.Content.GetType() == typeof(StatisticsView))
+            {
+                StatisticsMenuButton.Background = BackGroundBrush;
+            }
         }
 
         private void UndoMenuButtonColors()
@@ -119,6 +126,7 @@ namespace EPS.Administration.ServiceUI.View.Menu
             DeviceClassifications.Background = ForegroundBrush;
             DeviceLocations.Background = ForegroundBrush;
             DeviceModels.Background = ForegroundBrush;
+            StatisticsMenuButton.Background = ForegroundBrush;
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -171,7 +179,8 @@ namespace EPS.Administration.ServiceUI.View.Menu
 
         private void ReportsMenu_Click(object sender, RoutedEventArgs e)
         {
-
+            BaseContent.Content = new StatisticsView();
+            UpdateButtonBackgroud();
         }
     }
 }
