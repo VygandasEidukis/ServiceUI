@@ -7,7 +7,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignWidth="1000"
     Loaded="UserControl_Loaded"
     mc:Ignorable="d">
     <Grid KeyUp="Grid_KeyUp">
@@ -35,7 +35,7 @@
             Visibility="Collapsed" />
         <TextBox
             Name="Search_Classification_Width"
-            Text="100"
+            Text="190"
             Visibility="Collapsed" />
         <TextBox
             Name="Search_Events_Width"
@@ -58,7 +58,7 @@
                 MinWidth="100"
                 Margin="1.2,0,1,0"
                 KeyUp="Grid_KeyUp"
-                Text="{Binding Filter.SerialNumberFilter}" />
+                Text="{Binding Filter.SerialNumberFilter, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox
                 x:Name="Search_Model"
                 Width="{Binding ElementName=Search_Model_Width, Path=Text, Mode=OneWay}"
@@ -66,7 +66,7 @@
                 MinWidth="100"
                 Margin="1.5,0,0,0"
                 KeyUp="Grid_KeyUp"
-                Text="{Binding Filter.ModelFilter}" />
+                Text="{Binding Filter.ModelFilter, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox
                 x:Name="Search_Classification"
                 Width="{Binding ElementName=Search_Classification_Width, Path=Text, Mode=OneWay}"
@@ -74,7 +74,7 @@
                 MinWidth="100"
                 Margin="0,0,-.5,0"
                 KeyUp="Grid_KeyUp"
-                Text="{Binding Filter.ClassificationFilter}" />
+                Text="{Binding Filter.ClassificationFilter, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox
                 x:Name="Search_Events"
                 Width="{Binding ElementName=Search_Events_Width, Path=Text, Mode=OneWay}"
@@ -82,16 +82,16 @@
                 MinWidth="50"
                 Margin=".7,0,0,0"
                 KeyUp="Grid_KeyUp"
-                Text="{Binding Filter.EventsCountFilter}" />
+                Text="{Binding Filter.EventsCountFilter, UpdateSourceTrigger=PropertyChanged}" />
             <DatePicker
                 Name="startDate"
                 Grid.Row="12"
                 Grid.Column="1"
                 Width="{Binding ElementName=Search_LastUpdate_Width, Path=Text, Mode=OneWay}"
-                DisplayDate="{Binding Filter.LastUpdateFilter, StringFormat='yyyy-MM-dd'}"
+                DisplayDate="{Binding Filter.LastUpdateFilter, StringFormat='yyyy-MM-dd', UpdateSourceTrigger=PropertyChanged}"
                 Focusable="True"
                 KeyUp="Grid_KeyUp"
-                SelectedDate="{Binding Filter.LastUpdateFilter, StringFormat='yyyy-MM-dd'}" />
+                SelectedDate="{Binding Filter.LastUpdateFilter, StringFormat='yyyy-MM-dd', UpdateSourceTrigger=PropertyChanged}" />
             <TextBox
                 x:Name="Last_Status"
                 Width="{Binding ElementName=Search_LastStatus_Width, Path=Text, Mode=OneWay}"
@@ -99,7 +99,7 @@
                 MinWidth="50"
                 Margin="0,0,.7,0"
                 KeyUp="Grid_KeyUp"
-                Text="{Binding Filter.LastStatusFilter}" />
+                Text="{Binding Filter.LastStatusFilter, UpdateSourceTrigger=PropertyChanged}" />
         </WrapPanel>
         <ListView
             x:Name="TerminalList"

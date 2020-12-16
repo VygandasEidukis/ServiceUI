@@ -17,15 +17,15 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20" />
-                    <RowDefinition Height="20" />
+                    <RowDefinition Height="25" />
                     <RowDefinition Height="10" />
-                    <RowDefinition Height="20" />
+                    <RowDefinition Height="25" />
                     <RowDefinition Height="10" />
                     <RowDefinition Height="25" />
                     <RowDefinition Height="10" />
                     <RowDefinition Height="25" />
                     <RowDefinition Height="10" />
-                    <RowDefinition Height="20" />
+                    <RowDefinition Height="25" />
                     <RowDefinition Height="10" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="25" />
@@ -64,7 +64,7 @@
 
                     <Button
                         x:Name="RemoveEvent"
-                        Width="50"
+                        Width="90"
                         HorizontalAlignment="Right"
                         Click="RemoveEventClick"
                         Content="Remove" />
@@ -75,7 +75,7 @@
                     Grid.Row="11"
                     Grid.ColumnSpan="2"
                     MaxHeight="250"
-                    ItemsSource="{Binding DeviceEvents}" />
+                    ItemsSource="{Binding DeviceEvents, UpdateSourceTrigger=PropertyChanged}" />
             </Grid>
         </Grid>
     </Grid>

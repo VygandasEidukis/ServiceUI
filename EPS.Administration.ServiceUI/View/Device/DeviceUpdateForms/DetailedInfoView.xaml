@@ -16,19 +16,19 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20" />
-                <RowDefinition Height="20" />
+                <RowDefinition Height="25" />
                 <RowDefinition Height="10" />
-                <RowDefinition Height="20" />
+                <RowDefinition Height="25" />
                 <RowDefinition Height="10" />
-                <RowDefinition Height="20" />
+                <RowDefinition Height="25" />
                 <RowDefinition Height="10" />
-                <RowDefinition Height="20" />
+                <RowDefinition Height="25" />
                 <RowDefinition Height="10" />
                 <RowDefinition Height="100" />
                 <RowDefinition Height="10" />
                 <RowDefinition Height="25" />
                 <RowDefinition Height="10" />
-                <RowDefinition Height="20" />
+                <RowDefinition Height="25" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="25" />
             </Grid.RowDefinitions>
@@ -65,7 +65,9 @@
             <TextBox
                 Grid.Row="9"
                 Grid.Column="1"
+                AcceptsReturn="True"
                 Text="{Binding Device.AdditionalNotes}"
+                TextWrapping="Wrap"
                 VerticalScrollBarVisibility="Auto" />
 
             <TextBlock Grid.Row="11" Text="Invoice date:" />

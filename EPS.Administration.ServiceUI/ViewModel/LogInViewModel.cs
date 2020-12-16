@@ -11,7 +11,7 @@ namespace EPS.Administration.ServiceUI.ViewModel
     public class LogInViewModel : BaseViewModel
     {
         public string Username { get; set; } = "TEST";
-        public string Password { get; set; } = "TEST";
+        public string Password { get; set; }
 
         public LogInViewModel()
         {

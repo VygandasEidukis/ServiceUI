@@ -156,6 +156,11 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
 
         public async Task AddOrUpdate()
         {
+            if (!VaildateChage(Device))
+            {
+                return;
+            }
+
             var doc = await UploadDocument();
             if (doc != null)
             {
@@ -193,6 +198,11 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
                     MainWindow.Instance.ChangeView(new MenuView());
                 }
             }
+        }
+
+        private bool VaildateChage(Models.Device.Device device)
+        {
+            throw new NotImplementedException();
         }
 
         private async Task<FileDefinition> UploadDocument()
