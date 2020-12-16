@@ -10,22 +10,22 @@
     Loaded="UserControl_Loaded"
     mc:Ignorable="d">
     <Grid>
-        <Grid Width="350" ScrollViewer.CanContentScroll="True">
+        <Grid Width="420" ScrollViewer.CanContentScroll="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="20" />
-                <RowDefinition Height="20" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="25" />
                 <RowDefinition Height="10" />
-                <RowDefinition Height="20" />
+                <RowDefinition Height="25" />
                 <RowDefinition Height="10" />
-                <RowDefinition Height="20" />
+                <RowDefinition Height="25" />
                 <RowDefinition Height="10" />
-                <RowDefinition Height="180" />
+                <RowDefinition Height="25" />
                 <RowDefinition Height="10" />
-                <RowDefinition Height="20" />
+                <RowDefinition Height="25" />
                 <RowDefinition Height="10" />
                 <RowDefinition Height="200" />
                 <RowDefinition Height="*" />
@@ -41,7 +41,7 @@
                 Text="{Binding SerialNumber.SerialNumber}"
                 TextChanged="SerialNumber_Changed" />
 
-            <TextBlock Grid.Row="3" Text="Model:" />
+            <TextBlock Grid.Row="3" Text="Device model:" />
             <ComboBox
                 x:Name="Model"
                 Grid.Row="3"
@@ -50,7 +50,7 @@
                 SelectedItem="{Binding CurrentDevice.Model, Mode=TwoWay}"
                 SelectedValuePath="Id" />
 
-            <TextBlock Grid.Row="5" Text="Owned by:" />
+            <TextBlock Grid.Row="5" Text="Device is owned by:" />
             <ComboBox
                 x:Name="OwnedBy"
                 Grid.Row="5"
@@ -59,7 +59,7 @@
                 SelectedItem="{Binding CurrentDevice.OwnedBy}" />
 
             <TextBlock Grid.Row="7" Text="Acquisition date:" />
-            <Calendar
+            <DatePicker
                 Grid.Row="7"
                 Grid.Column="1"
                 DisplayDate="{Binding CurrentDevice.AcquisitionDate}"

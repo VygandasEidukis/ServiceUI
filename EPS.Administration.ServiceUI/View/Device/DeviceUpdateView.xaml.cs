@@ -56,6 +56,10 @@ namespace EPS.Administration.ServiceUI.View.Device
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            if (DeviceUpdateContent.Content.GetType().Name == nameof(EventsDataView))
+            {
+                (DeviceUpdateContent.Content as EventsDataView).EventsList.SelectedItem = null;
+            }
             DeviceUpdateContent.Content = new EventsDataView();
         }
 

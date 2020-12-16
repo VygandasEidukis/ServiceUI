@@ -59,22 +59,23 @@
                         <Label>Username</Label>
                         <TextBox
                             Width="130"
-                            Height="17"
+                            Height="20"
                             HorizontalAlignment="Right"
                             Text="{Binding Username}" />
                     </Grid>
                     <Grid>
                         <Label>Password</Label>
-                        <TextBox
+                        <PasswordBox
+                            x:Name="PW_BOX"
                             Width="130"
-                            Height="17"
+                            Height="20"
                             HorizontalAlignment="Right"
-                            Text="{Binding Password}" />
+                            KeyUp="PasswordBox_KeyUp" />
                     </Grid>
                 </StackPanel>
                 <Button
                     Width="100"
-                    Height="20"
+                    Height="25"
                     VerticalAlignment="Bottom"
                     Click="LogInButton"
                     Content="Log in" />

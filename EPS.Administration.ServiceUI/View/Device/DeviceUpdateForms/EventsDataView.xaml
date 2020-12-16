@@ -21,9 +21,9 @@
                     <RowDefinition Height="10" />
                     <RowDefinition Height="20" />
                     <RowDefinition Height="10" />
-                    <RowDefinition Height="20" />
+                    <RowDefinition Height="25" />
                     <RowDefinition Height="10" />
-                    <RowDefinition Height="170" />
+                    <RowDefinition Height="25" />
                     <RowDefinition Height="10" />
                     <RowDefinition Height="20" />
                     <RowDefinition Height="10" />
@@ -32,35 +32,28 @@
                 </Grid.RowDefinitions>
 
 
-                <TextBlock Grid.Row="1" Text="Status:" />
+                <TextBlock Grid.Row="1" Text="Event status:" />
                 <ComboBox
                     Grid.Row="1"
                     Grid.Column="1"
                     ItemsSource="{Binding Statuses}"
                     SelectedItem="{Binding ElementName=EventsList, Path=SelectedItem.Status}" />
 
-                <TextBlock Grid.Row="3" Text="Location:" />
+                <TextBlock Grid.Row="3" Text="Client:" />
                 <ComboBox
                     Grid.Row="3"
                     Grid.Column="1"
                     ItemsSource="{Binding Locations}"
                     SelectedItem="{Binding ElementName=EventsList, Path=SelectedItem.Location}" />
 
-                <TextBlock Grid.Row="5" Text="Classification: (komplektacija)" />
-                <ComboBox
+                <TextBlock Grid.Row="5" Text="Date of the event:" />
+                <DatePicker
                     Grid.Row="5"
-                    Grid.Column="1"
-                    ItemsSource="{Binding Classifications}"
-                    SelectedItem="{Binding ElementName=EventsList, Path=SelectedItem.Group}" />
-
-                <TextBlock Grid.Row="7" Text="Date:" />
-                <Calendar
-                    Grid.Row="7"
                     Grid.Column="1"
                     DisplayDate="{Binding ElementName=EventsList, Path=SelectedItem.Date}"
                     SelectedDate="{Binding ElementName=EventsList, Path=SelectedItem.Date}" />
 
-                <TextBlock Grid.Row="9" Text="Events: " />
+                <TextBlock Grid.Row="9" Text="List of events: " />
                 <DockPanel Grid.Row="9" Grid.Column="1">
                     <Button
                         x:Name="AddEvent"
@@ -73,13 +66,15 @@
                         x:Name="RemoveEvent"
                         Width="50"
                         HorizontalAlignment="Right"
-                        Content="Remove" Click="RemoveEventClick" />
+                        Click="RemoveEventClick"
+                        Content="Remove" />
                 </DockPanel>
 
                 <ListBox
                     x:Name="EventsList"
                     Grid.Row="11"
                     Grid.ColumnSpan="2"
+                    MaxHeight="250"
                     ItemsSource="{Binding DeviceEvents}" />
             </Grid>
         </Grid>

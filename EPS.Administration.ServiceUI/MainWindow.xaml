@@ -9,7 +9,11 @@
     Title="MainWindow"
     Width="1200"
     Height="600"
+    MinWidth="100"
+    MinHeight="400"
     AllowDrop="True"
+    FontSize="13"
+    FontWeight="Bold"
     mc:Ignorable="d">
     <Grid Background="#ECECEC" Loaded="Grid_Loaded">
         <Grid.ColumnDefinitions>

@@ -3,6 +3,7 @@ using EPS.Administration.ServiceUI.ViewModel.Device;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace EPS.Administration.ServiceUI.View.Device
 {
@@ -25,6 +26,7 @@ namespace EPS.Administration.ServiceUI.View.Device
         {
             DataContext = new DeviceViewModel(); 
             CurrentPage.Text = "1";
+            startDate.SelectedDate = null;
         }
 
         private async void Filter(object sender, System.Windows.RoutedEventArgs e)
@@ -95,6 +97,14 @@ namespace EPS.Administration.ServiceUI.View.Device
         private void AddPromotionButtonClick(object sender, System.Windows.RoutedEventArgs e)
         {
             MenuView.Instance.ChangeView(new DeviceUpdateView(null));
+        }
+
+        private void Grid_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Filter(null, null);
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using EPS.Administration.APIAccess.Models.Exceptions;
 using EPS.Administration.Models.APICommunication;
 using EPS.Administration.Models.APICommunication.Filter;
+using EPS.Administration.Models.Device;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -40,7 +41,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
                 {
                     Filter.AllPages = deviceResponse.Pages;
                     Devices = new ObservableCollection<Models.Device.Device>();
-                    foreach (var device in deviceResponse.Devices)
+                    foreach (var device in deviceResponse.Devices.OrderByDescending(x => x.LastUpdate))
                     {
                         Devices.Add(device);
                     }

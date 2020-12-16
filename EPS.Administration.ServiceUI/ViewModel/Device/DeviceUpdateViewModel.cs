@@ -22,7 +22,8 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
         public SerialNumberModel SerialNumber { get; set; }
 
         public Models.Device.Device Device { get; set; }
-        public ObservableCollection<DeviceEvent> DeviceEvents{ get; set; }
+        public ObservableCollection<DeviceEvent> DeviceEvents { get; set; }
+        public DeviceEvent CurrentEvent { get; set; }
 
         //Metadata
         public ObservableCollection<Classification> Classifications { get; set; }
@@ -124,6 +125,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
                     Document = Device.Document;
                     SerialNumber = new SerialNumberModel();
                     SerialNumber.SerialNumber = Device.SerialNumber;
+                    Device.DeviceEvents.OrderByDescending(x => x.Date);
                     DeviceEvents = new ObservableCollection<DeviceEvent>();
                     if (Device.DeviceEvents != null)
                     {

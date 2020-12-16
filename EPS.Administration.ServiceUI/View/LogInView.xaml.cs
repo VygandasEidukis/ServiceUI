@@ -31,5 +31,10 @@ namespace EPS.Administration.ServiceUI.View
                 MainWindow.Instance.Authenticate(token);
             }
         }
+
+        private void PasswordBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            Context.Password = PW_BOX.Password;
+        }
     }
 }

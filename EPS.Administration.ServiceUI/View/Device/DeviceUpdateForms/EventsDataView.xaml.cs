@@ -41,6 +41,7 @@ namespace EPS.Administration.ServiceUI.View.Device.DeviceUpdateForms
             if (EventsList.SelectedIndex >= 0)
             {
                 Context.DeviceEvents.RemoveAt(EventsList.SelectedIndex);
+                EventsList.SelectedItem = null;
             }
         }
     }

@@ -10,7 +10,7 @@
     Loaded="UserControl_Loaded"
     mc:Ignorable="d">
     <Grid>
-        <Grid Width="350">
+        <Grid Width="420">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -28,13 +28,13 @@
             </Grid.RowDefinitions>
 
 
-            <TextBlock Grid.Row="1" Text="Classification code:" />
+            <TextBlock Grid.Row="1" Text="Group internal code:" />
             <TextBox
                 Grid.Row="1"
                 Grid.Column="1"
                 Text="{Binding CurrentClassification.Code}" />
 
-            <TextBlock Grid.Row="3" Text="Title:" />
+            <TextBlock Grid.Row="3" Text="External group name:" />
             <TextBox
                 Grid.Row="3"
                 Grid.Column="1"

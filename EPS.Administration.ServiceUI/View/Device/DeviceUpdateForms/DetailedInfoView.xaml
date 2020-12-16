@@ -26,7 +26,7 @@
                 <RowDefinition Height="10" />
                 <RowDefinition Height="100" />
                 <RowDefinition Height="10" />
-                <RowDefinition Height="170" />
+                <RowDefinition Height="25" />
                 <RowDefinition Height="10" />
                 <RowDefinition Height="20" />
                 <RowDefinition Height="*" />
@@ -41,41 +41,46 @@
                 ItemsSource="{Binding Statuses}"
                 SelectedItem="{Binding Device.Status}" />
 
-            <TextBlock Grid.Row="3" Text="Current location:" />
+            <TextBlock Grid.Row="3" Text="Current client:" />
             <ComboBox
                 Grid.Row="3"
                 Grid.Column="1"
                 ItemsSource="{Binding Locations}"
                 SelectedItem="{Binding Device.InitialLocation}" />
 
-            <TextBlock Grid.Row="5" Text="Classification: (komplektacija)" />
+            <TextBlock Grid.Row="5" Text="Group:" />
             <ComboBox
                 Grid.Row="5"
                 Grid.Column="1"
                 ItemsSource="{Binding Classifications}"
                 SelectedItem="{Binding Device.Classification}" />
 
-            <TextBlock Grid.Row="7" Text="SF number:" />
+            <TextBlock Grid.Row="7" Text="Invoice number:" />
             <TextBox
                 Grid.Row="7"
                 Grid.Column="1"
                 Text="{Binding Device.SfNumber}" />
 
-            <TextBlock Grid.Row="9" Text="Description / Additional info:" />
+            <TextBlock Grid.Row="9" Text="Notes:" />
             <TextBox
                 Grid.Row="9"
                 Grid.Column="1"
                 Text="{Binding Device.AdditionalNotes}"
                 VerticalScrollBarVisibility="Auto" />
 
-            <TextBlock Grid.Row="11" Text="SF date:" />
-            <Calendar
+            <TextBlock Grid.Row="11" Text="Invoice date:" />
+            <DatePicker
+                Name="startDate"
                 Grid.Row="11"
                 Grid.Column="1"
-                DisplayDate="{Binding Device.SfDate}"
-                SelectedDate="{Binding Device.SfDate}" />
+                Focusable="True"
+                SelectedDate="{Binding Device.SfDate}">
+                <DatePicker.Resources>
+                    <Style TargetType="DatePickerTextBox" />
+                </DatePicker.Resources>
+            </DatePicker>
 
-            <TextBlock Grid.Row="13" Text="Document:" />
+            <TextBlock Grid.Row="13" Text="Invoice document:" />
             <DockPanel Grid.Row="13" Grid.Column="1">
                 <TextBlock
                     x:Name="SelectedItem"

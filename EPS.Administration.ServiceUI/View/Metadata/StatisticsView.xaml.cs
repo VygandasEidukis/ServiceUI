@@ -22,5 +22,10 @@ namespace EPS.Administration.ServiceUI.View.Metadata
         {
             InitializeComponent();
         }
+
+        private void DatePickerTextBox_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            //datePicker.IsDropDownOpen = true;
+        }
     }
 }

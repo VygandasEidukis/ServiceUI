@@ -2,6 +2,7 @@
 using EPS.Administration.Models.APICommunication;
 using EPS.Administration.Models.APICommunication.Filter;
 using EPS.Administration.Models.Device;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -41,8 +42,14 @@ namespace EPS.Administration.APIAccess.Services
 
         public async Task<BaseResponse> ImportExtenderDataFromExcel(string token, string path)
         {
-            var file = File.Open(path, FileMode.Open);
-            return await RequestHandler.ProcessPostFileRequest<BaseResponse, FileStream>(POST_UPLOADEXTENDERDATA, file, file.Name, token);
+            try
+            {
+                var file = File.Open(path, FileMode.Open);
+                return await RequestHandler.ProcessPostFileRequest<BaseResponse, FileStream>(POST_UPLOADEXTENDERDATA, file, file.Name, token);
+            }catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<DeviceResponse> GetDevice(string token, string serialNumber)

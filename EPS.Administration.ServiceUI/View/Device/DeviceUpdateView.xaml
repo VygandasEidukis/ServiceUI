@@ -30,28 +30,32 @@
         <DockPanel
             Grid.Row="2"
             Grid.Column="1"
-            Width="600"
+            Width="615"
+            Margin="15,0,0,0"
             Background="#DBDBE3">
             <Button
-                Width="110"
-                Margin="5,0,5,0"
+                Width="170"
+                Margin="5"
+                Background="AliceBlue"
                 Click="Button_Click"
-                Content="Identification info" />
+                Content="Individual device info" />
             <Button
                 Width="110"
-                Margin="5,0,5,0"
+                Margin="5"
+                Background="AliceBlue"
                 Click="Button_Click_1"
-                Content="Detailed data" />
+                Content="Common data" />
             <Button
                 Width="110"
-                Margin="5,0,5,0"
+                Margin="5"
+                Background="AliceBlue"
                 Click="Button_Click_2"
-                Content="Events" />
+                Content="Device events" />
             <Button
                 Width="110"
-                Margin="5,0,5,0"
+                Margin="5"
                 HorizontalAlignment="Right"
-                Background="Lime"
+                Background="#C1DFC1"
                 Click="AddOrUpdateButton"
                 Content="Add or Update" />
         </DockPanel>

@@ -46,7 +46,6 @@ namespace EPS.Administration.APIAccess.Services
             try
             {
                 HttpClient httpClient = string.IsNullOrEmpty(token) ? GetClient() : GetClient(token);
-
                 var content = new MultipartFormDataContent();
                 content.Add(new StreamContent(package), "file", fileName);
 
@@ -64,6 +63,10 @@ namespace EPS.Administration.APIAccess.Services
             catch (Exception ex)
             {
                 throw new ServiceException(ex.Message);
+            }
+            finally
+            {
+                package.Close();
             }
 
             return result;

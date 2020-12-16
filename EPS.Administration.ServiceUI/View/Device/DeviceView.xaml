@@ -10,7 +10,7 @@
     d:DesignWidth="800"
     Loaded="UserControl_Loaded"
     mc:Ignorable="d">
-    <Grid>
+    <Grid KeyUp="Grid_KeyUp">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5" />
             <ColumnDefinition Width="*" />
@@ -35,7 +35,7 @@
             Visibility="Collapsed" />
         <TextBox
             Name="Search_Classification_Width"
-            Text="200"
+            Text="100"
             Visibility="Collapsed" />
         <TextBox
             Name="Search_Events_Width"
@@ -43,50 +43,63 @@
             Visibility="Collapsed" />
         <TextBox
             Name="Search_LastUpdate_Width"
-            Text="198"
+            Text="120"
+            Visibility="Collapsed" />
+        <TextBox
+            Name="Search_LastStatus_Width"
+            Text="170"
             Visibility="Collapsed" />
 
         <WrapPanel Grid.Row="1" Grid.Column="1">
             <TextBox
                 x:Name="Search_SerialNumber"
                 Width="{Binding ElementName=Search_SerialNumber_Width, Path=Text, Mode=OneWay}"
-                Height="22"
+                Height="25"
                 MinWidth="100"
-                Margin=".7,0,.7,0"
-                LostFocus="Filter"
+                Margin="1.2,0,1,0"
+                KeyUp="Grid_KeyUp"
                 Text="{Binding Filter.SerialNumberFilter}" />
             <TextBox
                 x:Name="Search_Model"
                 Width="{Binding ElementName=Search_Model_Width, Path=Text, Mode=OneWay}"
-                Height="22"
+                Height="25"
                 MinWidth="100"
-                Margin=".7,0,.7,0"
-                LostFocus="Filter"
+                Margin="1.5,0,0,0"
+                KeyUp="Grid_KeyUp"
                 Text="{Binding Filter.ModelFilter}" />
             <TextBox
                 x:Name="Search_Classification"
                 Width="{Binding ElementName=Search_Classification_Width, Path=Text, Mode=OneWay}"
-                Height="22"
+                Height="25"
                 MinWidth="100"
-                Margin=".7,0,.7,0"
-                LostFocus="Filter"
+                Margin="0,0,-.5,0"
+                KeyUp="Grid_KeyUp"
                 Text="{Binding Filter.ClassificationFilter}" />
             <TextBox
                 x:Name="Search_Events"
                 Width="{Binding ElementName=Search_Events_Width, Path=Text, Mode=OneWay}"
-                Height="22"
+                Height="25"
                 MinWidth="50"
-                Margin=".7,0,.7,0"
-                LostFocus="Filter"
+                Margin=".7,0,0,0"
+                KeyUp="Grid_KeyUp"
                 Text="{Binding Filter.EventsCountFilter}" />
-            <TextBox
-                x:Name="Search_LastUpdate"
+            <DatePicker
+                Name="startDate"
+                Grid.Row="12"
+                Grid.Column="1"
                 Width="{Binding ElementName=Search_LastUpdate_Width, Path=Text, Mode=OneWay}"
-                Height="22"
-                MinWidth="100"
-                Margin=".7,0,.7,0"
-                LostFocus="Filter"
-                Text="{Binding Filter.LastUpdateFilter}" />
+                DisplayDate="{Binding Filter.LastUpdateFilter, StringFormat='yyyy-MM-dd'}"
+                Focusable="True"
+                KeyUp="Grid_KeyUp"
+                SelectedDate="{Binding Filter.LastUpdateFilter, StringFormat='yyyy-MM-dd'}" />
+            <TextBox
+                x:Name="Last_Status"
+                Width="{Binding ElementName=Search_LastStatus_Width, Path=Text, Mode=OneWay}"
+                Height="25"
+                MinWidth="50"
+                Margin="0,0,.7,0"
+                KeyUp="Grid_KeyUp"
+                Text="{Binding Filter.LastStatusFilter}" />
         </WrapPanel>
         <ListView
             x:Name="TerminalList"
@@ -107,7 +120,7 @@
                     <GridViewColumn
                         Width="{Binding ElementName=Search_Classification_Width, Path=Text, Mode=TwoWay}"
                         DisplayMemberBinding="{Binding Classification}"
-                        Header="Classification" />
+                        Header="Group" />
                     <GridViewColumn
                         Width="{Binding ElementName=Search_Events_Width, Path=Text, Mode=TwoWay}"
                         DisplayMemberBinding="{Binding DeviceEventsCount}"
@@ -116,7 +129,10 @@
                         Width="{Binding ElementName=Search_LastUpdate_Width, Path=Text, Mode=TwoWay}"
                         DisplayMemberBinding="{Binding LastUpdate}"
                         Header="Last update" />
-
+                    <GridViewColumn
+                        Width="{Binding ElementName=Search_LastStatus_Width, Path=Text, Mode=TwoWay}"
+                        DisplayMemberBinding="{Binding LastStatus}"
+                        Header="Last update" />
                 </GridView>
             </ListView.View>
         </ListView>

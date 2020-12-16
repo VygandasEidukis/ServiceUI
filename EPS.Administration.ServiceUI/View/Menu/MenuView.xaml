@@ -105,7 +105,7 @@
                                     VerticalAlignment="Center"
                                     FontSize="15"
                                     FontWeight="Bold"
-                                    Text="Classification"
+                                    Text="Grouping"
                                     TextWrapping="WrapWithOverflow" />
                             </WrapPanel>
                         </Button.Content>
@@ -147,13 +147,13 @@
                                     Margin="1,1,1,1"
                                     HorizontalAlignment="Left"
                                     Foreground="#000000"
-                                    Kind="Location" />
+                                    Kind="Accounts" />
                                 <TextBlock
                                     x:Name="LocationsText"
                                     VerticalAlignment="Center"
                                     FontSize="15"
                                     FontWeight="Bold"
-                                    Text="Locations"
+                                    Text="Clients"
                                     TextWrapping="WrapWithOverflow" />
                             </WrapPanel>
                         </Button.Content>
