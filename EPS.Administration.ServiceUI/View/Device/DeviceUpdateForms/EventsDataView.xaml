@@ -39,7 +39,7 @@
                     ItemsSource="{Binding Statuses}"
                     SelectedItem="{Binding ElementName=EventsList, Path=SelectedItem.Status}" />
 
-                <TextBlock Grid.Row="3" Text="Client:" />
+                <TextBlock Grid.Row="3" Text="Current client:" />
                 <ComboBox
                     Grid.Row="3"
                     Grid.Column="1"

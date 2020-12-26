@@ -3,6 +3,7 @@ using EPS.Administration.Models.APICommunication;
 using EPS.Administration.Models.APICommunication.Filter;
 using EPS.Administration.Models.Device;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -20,6 +21,7 @@ namespace EPS.Administration.APIAccess.Services
         private const string POST_UPDATECLASSIFICATIONS = "api/Devices/Classifications";
         private const string POST_UPDATEMODELS = "api/Devices/Models";
         private const string POST_UPLOADDOCUMENT = "api/Files/Document";
+        private const string POST_GETREPORTDEVICES = "api/Devices/GetReportDevices";
 
         // GET Requests
         private const string GET_GETDEVICE = "api/Devices?serialNumber={0}";
@@ -113,6 +115,11 @@ namespace EPS.Administration.APIAccess.Services
             var name = Path.GetFileName(filePath);
             var file = File.Open(filePath, FileMode.Open);
             return await RequestHandler.ProcessPostFileRequest<FileUploadResponse, FileStream>(POST_UPLOADDOCUMENT, file, name, token);
+        }
+
+        public async Task<List<Device>> GetReportDevices(string token, DeviceMetadataResponseWithDates metadata)
+        {
+            return await RequestHandler.ProcessPostRequest<List<Device>, DeviceMetadataResponseWithDates>(POST_GETREPORTDEVICES, metadata, token);
         }
     }
 }

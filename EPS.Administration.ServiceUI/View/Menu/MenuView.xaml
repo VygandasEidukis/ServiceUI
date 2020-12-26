@@ -202,7 +202,7 @@
                                     VerticalAlignment="Center"
                                     FontSize="15"
                                     FontWeight="Bold"
-                                    Text="Reports"
+                                    Text="Data reports"
                                     TextWrapping="WrapWithOverflow" />
                             </WrapPanel>
                         </Button.Content>

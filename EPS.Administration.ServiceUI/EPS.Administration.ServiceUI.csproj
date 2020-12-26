@@ -7,11 +7,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="ExcelDataReader" Version="3.6.0" />
+		<PackageReference Include="FastExcel" Version="3.0.13" />
 		<PackageReference Include="MaterialDesign.Icons" Version="1.1.0" />
 		<PackageReference Include="MaterialDesignThemes" Version="3.2.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
+		<PackageReference Include="Ookii.Dialogs.Wpf" Version="3.1.0" />
 		<PackageReference Include="PropertyChanged.Fody" Version="3.3.1" />
 	</ItemGroup>
 
@@ -23,6 +27,9 @@
 	<ItemGroup>
 		<None Update="appsettings.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Template.xlsx">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 

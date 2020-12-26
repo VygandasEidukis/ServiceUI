@@ -3,6 +3,7 @@ using EPS.Administration.ServiceUI.ViewModel.Device;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace EPS.Administration.ServiceUI.View.Device
@@ -22,11 +23,17 @@ namespace EPS.Administration.ServiceUI.View.Device
             InitializeComponent();
         }
 
-        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private async void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             DataContext = new DeviceViewModel(); 
             CurrentPage.Text = "1";
             startDate.SelectedDate = null;
+            await Context.GetDevices(0);
+
+            if (Context.Devices != null)
+            {
+                CollectionViewSource.GetDefaultView(Context.Devices).Refresh();
+            }
         }
 
         private async void Filter(object sender, System.Windows.RoutedEventArgs e)

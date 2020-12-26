@@ -36,6 +36,7 @@ namespace EPS.Administration.ServiceUI
             var config = confBuilder.Build();
             services.AddSingleton<IConfiguration>(config);
             services.AddScoped<ISelfService, SelfService>();
+
             return services.BuildServiceProvider();
         }
     }

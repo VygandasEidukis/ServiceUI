@@ -6,6 +6,9 @@ using PropertyChanged;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Windows;
 
@@ -19,7 +22,7 @@ namespace EPS.Administration.ServiceUI
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public string AuthenticationKey { get; private set; }
-        private static int NOTIFICATION_DELAY = 3;
+        private static int NOTIFICATION_DELAY = 5;
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
         private static MainWindow _mainWindow;
 
@@ -60,7 +63,7 @@ namespace EPS.Administration.ServiceUI
             var r = new BaseResponse()
             {
                 Error = ErrorCode.ServiceError,
-                Message = response.Message
+                Message = " | " + response.Message
             };
 
             AddNotification(r);
@@ -72,7 +75,7 @@ namespace EPS.Administration.ServiceUI
             {
                 if (_timer == null)
                 {
-                    _timer = new Timer(new TimerCallback(EnqueueTimer), null, TimeSpan.FromSeconds(NOTIFICATION_DELAY), TimeSpan.FromSeconds(NOTIFICATION_DELAY));
+                    _timer = new Timer(new TimerCallback(EnqueueTimer), null, _responseQueue.Count <= 1 ? TimeSpan.FromSeconds(NOTIFICATION_DELAY) : TimeSpan.FromSeconds(0), _responseQueue.Count <= 1 ? TimeSpan.FromSeconds(NOTIFICATION_DELAY) : TimeSpan.FromSeconds(2));
                 }
                 else
                 {

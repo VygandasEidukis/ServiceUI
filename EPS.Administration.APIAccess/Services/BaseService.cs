@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace EPS.Administration.APIAccess.Services
 {
@@ -15,7 +18,10 @@ namespace EPS.Administration.APIAccess.Services
             { 
                 if(_httpClient == null)
                 {
-                    _httpClient = new HttpClient();
+                    var handler = new HttpClientHandler();
+                    handler.ClientCertificateOptions = ClientCertificateOption.Manual;
+                    handler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
+                    _httpClient = new HttpClient(handler);
                     _httpClient.BaseAddress = new Uri("http://localhost:13377/");
                 }
 

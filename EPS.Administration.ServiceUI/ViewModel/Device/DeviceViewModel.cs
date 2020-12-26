@@ -21,7 +21,6 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
         public DeviceViewModel()
         {
             Filter = new DeviceFilter();
-            Task.Run(() => GetDevices(0));
         }
 
         public async Task GetDevices(int page)

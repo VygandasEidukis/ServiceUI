@@ -2,6 +2,7 @@
 using EPS.Administration.Models.APICommunication;
 using EPS.Administration.Models.APICommunication.Filter;
 using EPS.Administration.Models.Device;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace EPS.Administration.APIAccess.Services
@@ -23,5 +24,6 @@ namespace EPS.Administration.APIAccess.Services
         Task<BaseResponse> UpdateClassification(string token, Classification classification);
         Task<BaseResponse> UpdateModel(string token, DeviceModel model);
         Task<FileUploadResponse> UploadDocument(string token, string filePath);
+        Task<List<Device>> GetReportDevices(string token, DeviceMetadataResponseWithDates metadata);
     }
 }

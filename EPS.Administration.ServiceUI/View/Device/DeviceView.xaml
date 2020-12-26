@@ -105,7 +105,7 @@
             x:Name="TerminalList"
             Grid.Row="2"
             Grid.Column="1"
-            ItemsSource="{Binding Devices}"
+            ItemsSource="{Binding Devices, UpdateSourceTrigger=PropertyChanged}"
             MouseDoubleClick="DoubleClickTerminalItem">
             <ListView.View>
                 <GridView>
@@ -128,11 +128,11 @@
                     <GridViewColumn
                         Width="{Binding ElementName=Search_LastUpdate_Width, Path=Text, Mode=TwoWay}"
                         DisplayMemberBinding="{Binding LastUpdate}"
-                        Header="Last update" />
+                        Header="Last event date" />
                     <GridViewColumn
                         Width="{Binding ElementName=Search_LastStatus_Width, Path=Text, Mode=TwoWay}"
                         DisplayMemberBinding="{Binding LastStatus}"
-                        Header="Last update" />
+                        Header="Last status" />
                 </GridView>
             </ListView.View>
         </ListView>

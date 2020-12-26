@@ -12,13 +12,6 @@ namespace EPS.Administration.ServiceUI.ViewModel
         public string Token { get => MainWindow.Instance.AuthenticationKey; }
         public ISelfService Service { get => ServicesManager.SelfService; }
 
-        private int myVar;
-        public int MyProperty
-        {
-            get { return myVar; }
-            set { myVar = value; }
-        }
-
         public void Notify(string text)
         {
             if (!string.IsNullOrEmpty(text))
@@ -39,6 +32,5 @@ namespace EPS.Administration.ServiceUI.ViewModel
                 MainWindow.Instance.AddNotification(response);
             }
         }
-
     }
 }
