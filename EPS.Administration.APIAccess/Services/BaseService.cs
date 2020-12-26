@@ -10,6 +10,8 @@ namespace EPS.Administration.APIAccess.Services
 {
     public class BaseService
     {
+        public static string URI { get; set; } = "http://localhost:13377/";
+
         private static HttpClient _httpClient;
 
         public static HttpClient Client
@@ -22,7 +24,7 @@ namespace EPS.Administration.APIAccess.Services
                     handler.ClientCertificateOptions = ClientCertificateOption.Manual;
                     handler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
                     _httpClient = new HttpClient(handler);
-                    _httpClient.BaseAddress = new Uri("http://localhost:13377/");
+                    _httpClient.BaseAddress = new Uri(URI);
                 }
 
                 return _httpClient;

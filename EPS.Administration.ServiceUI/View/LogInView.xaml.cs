@@ -1,4 +1,6 @@
-﻿using EPS.Administration.ServiceUI.ViewModel;
+﻿using EPS.Administration.APIAccess.Services;
+using EPS.Administration.ServiceUI.ViewModel;
+using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -21,6 +23,12 @@ namespace EPS.Administration.ServiceUI.View
         {
             InitializeComponent();
             DataContext = new LogInViewModel();
+            Init();
+        }
+
+        private void Init()
+        {
+            BaseService.URI = ServicesManager.Configuration.GetSection("ServiceEndpoint").Value;
         }
 
         private async void LogInButton(object sender, System.Windows.RoutedEventArgs e)

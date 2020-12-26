@@ -28,13 +28,19 @@ namespace EPS.Administration.ServiceUI
             }
         }
 
+        public static IConfiguration Configuration
+        {
+            get
+            {
+                var confBuilder = new ConfigurationBuilder();
+                confBuilder.AddJsonFile("appsettings.json", optional: true);
+                return confBuilder.Build();
+            }
+        }
+
         private static ServiceProvider Init()
         {
             var services = new ServiceCollection();
-            var confBuilder = new ConfigurationBuilder();
-            confBuilder.AddJsonFile("appsettings.json", optional: true);
-            var config = confBuilder.Build();
-            services.AddSingleton<IConfiguration>(config);
             services.AddScoped<ISelfService, SelfService>();
 
             return services.BuildServiceProvider();

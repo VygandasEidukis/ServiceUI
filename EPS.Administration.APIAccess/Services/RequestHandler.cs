@@ -18,6 +18,7 @@ namespace EPS.Administration.APIAccess.Services
             RESPONSE result = default(RESPONSE);
             try
             {
+                BaseService service = new BaseService();
                 HttpClient httpClient = string.IsNullOrEmpty(token) ? GetClient() : GetClient(token);
                 HttpContent content = new StringContent(ObjectToJson(package), Encoding.UTF8, "application/json");
 
