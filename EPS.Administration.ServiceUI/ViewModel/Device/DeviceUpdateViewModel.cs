@@ -195,7 +195,7 @@ namespace EPS.Administration.ServiceUI.ViewModel.Device
                 }
                 else
                 {
-                    Notify(ErrorCode.ValidationError, $"Device {Device.SerialNumber} was updated successfully.");
+                    Notify(ErrorCode.OK, $"Device {Device.SerialNumber} was updated successfully.");
                 }
             }
             catch (ServiceException ex)

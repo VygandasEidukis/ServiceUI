@@ -63,11 +63,11 @@ namespace EPS.Administration.ServiceUI.View.Device
             DeviceUpdateContent.Content = new EventsDataView();
         }
 
-        private void AddOrUpdateButton(object sender, RoutedEventArgs e)
+        private async void AddOrUpdateButton(object sender, RoutedEventArgs e)
         {
             if (Context.IsEdit)
             {
-                Context.AddOrUpdate();
+                await Context.AddOrUpdate();
             }else
             {
                 Context.AddOrUpdateAll();
