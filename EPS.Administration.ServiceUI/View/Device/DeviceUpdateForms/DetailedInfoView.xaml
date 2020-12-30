@@ -86,15 +86,16 @@
             <DockPanel Grid.Row="13" Grid.Column="1">
                 <TextBlock
                     x:Name="SelectedItem"
-                    Width="122"
+                    Width="0"
                     DockPanel.Dock="Left"
-                    Text="{Binding Document}" />
+                    Text="testttt" />
                 <Button
-                    Width="50"
+                    Width="80"
                     HorizontalAlignment="Right"
                     Click="SelectDocument"
                     Content="select..."
-                    DockPanel.Dock="Right" />
+                    DockPanel.Dock="Right"
+                    Style="{StaticResource DefaultButton}" />
             </DockPanel>
         </Grid>
     </Grid>

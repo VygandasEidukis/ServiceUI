@@ -27,12 +27,12 @@
 
                 <StackPanel>
                     <Button
-                        Width="30"
+                        Width="40"
                         Height="30"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
                         Background="#00F0F8FF"
-                        BorderBrush="#00F0F8FF"
+                        BorderBrush="{x:Null}"
                         Click="MenuSizing_Click">
                         <Button.Content>
                             <materialDesign:PackIcon Foreground="#000000" Kind="Menu" />
@@ -42,6 +42,7 @@
                         x:Name="DevicesMenuButton"
                         HorizontalContentAlignment="Left"
                         Background="White"
+                        BorderBrush="{x:Null}"
                         Click="DevicesMenuButton_Click">
                         <Button.Content>
                             <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
@@ -49,7 +50,7 @@
                                     Width="40"
                                     Height="25"
                                     Margin="1,1,1,1"
-                                    HorizontalAlignment="Left"
+                                    HorizontalAlignment="Center"
                                     Foreground="#000000"
                                     Kind="Devices" />
                                 <TextBlock
@@ -66,6 +67,7 @@
                         x:Name="DeviceStatuses"
                         HorizontalContentAlignment="Left"
                         Background="White"
+                        BorderBrush="{x:Null}"
                         Click="StatusButtonClick">
                         <Button.Content>
                             <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
@@ -73,7 +75,7 @@
                                     Width="40"
                                     Height="25"
                                     Margin="1,1,1,1"
-                                    HorizontalAlignment="Left"
+                                    HorizontalAlignment="Center"
                                     Foreground="#000000"
                                     Kind="CheckBoxOutline" />
                                 <TextBlock
@@ -90,6 +92,7 @@
                         x:Name="DeviceClassifications"
                         HorizontalContentAlignment="Left"
                         Background="White"
+                        BorderBrush="{x:Null}"
                         Click="ClassificationButtonClick">
                         <Button.Content>
                             <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
@@ -97,7 +100,7 @@
                                     Width="40"
                                     Height="25"
                                     Margin="1,1,1,1"
-                                    HorizontalAlignment="Left"
+                                    HorizontalAlignment="Center"
                                     Foreground="#000000"
                                     Kind="Group" />
                                 <TextBlock
@@ -114,6 +117,7 @@
                         x:Name="DeviceModels"
                         HorizontalContentAlignment="Left"
                         Background="White"
+                        BorderBrush="{x:Null}"
                         Click="ModelsClick">
                         <Button.Content>
                             <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
@@ -121,7 +125,7 @@
                                     Width="40"
                                     Height="25"
                                     Margin="1,1,1,1"
-                                    HorizontalAlignment="Left"
+                                    HorizontalAlignment="Center"
                                     Foreground="#000000"
                                     Kind="Calculator" />
                                 <TextBlock
@@ -138,6 +142,7 @@
                         x:Name="DeviceLocations"
                         HorizontalContentAlignment="Left"
                         Background="White"
+                        BorderBrush="{x:Null}"
                         Click="LocationsButtonClick">
                         <Button.Content>
                             <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
@@ -145,7 +150,7 @@
                                     Width="40"
                                     Height="25"
                                     Margin="1,1,1,1"
-                                    HorizontalAlignment="Left"
+                                    HorizontalAlignment="Center"
                                     Foreground="#000000"
                                     Kind="Accounts" />
                                 <TextBlock
@@ -162,6 +167,7 @@
                         x:Name="ImportExportMenuButton"
                         HorizontalContentAlignment="Left"
                         Background="White"
+                        BorderBrush="{x:Null}"
                         Click="ImportExportMenuButton_Click">
                         <Button.Content>
                             <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
@@ -169,7 +175,7 @@
                                     Width="40"
                                     Height="25"
                                     Margin="1,1,1,1"
-                                    HorizontalAlignment="Left"
+                                    HorizontalAlignment="Center"
                                     Foreground="#000000"
                                     Kind="Upload" />
                                 <TextBlock
@@ -187,6 +193,7 @@
                         x:Name="StatisticsMenuButton"
                         HorizontalContentAlignment="Left"
                         Background="White"
+                        BorderBrush="{x:Null}"
                         Click="ReportsMenu_Click">
                         <Button.Content>
                             <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
@@ -194,7 +201,7 @@
                                     Width="40"
                                     Height="25"
                                     Margin="1,1,1,1"
-                                    HorizontalAlignment="Left"
+                                    HorizontalAlignment="Center"
                                     Foreground="#000000"
                                     Kind="ChartBellCurve" />
                                 <TextBlock
@@ -221,7 +228,7 @@
                                 Width="40"
                                 Height="25"
                                 Margin="1,1,1,1"
-                                HorizontalAlignment="Left"
+                                HorizontalAlignment="Center"
                                 Foreground="#000000"
                                 Kind="Door" />
                             <TextBlock

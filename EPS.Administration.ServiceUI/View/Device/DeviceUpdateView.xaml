@@ -36,24 +36,28 @@
             <Button
                 Width="170"
                 Margin="5"
+                BorderBrush="{x:Null}"
                 Background="AliceBlue"
                 Click="Button_Click"
                 Content="Individual device info" />
             <Button
                 Width="110"
                 Margin="5"
+                BorderBrush="{x:Null}"
                 Background="AliceBlue"
                 Click="Button_Click_1"
                 Content="Common data" />
             <Button
                 Width="110"
                 Margin="5"
+                BorderBrush="{x:Null}"
                 Background="AliceBlue"
                 Click="Button_Click_2"
                 Content="Device events" />
             <Button
                 Width="110"
                 Margin="5"
+                BorderBrush="{x:Null}"
                 HorizontalAlignment="Right"
                 Background="#C1DFC1"
                 Click="AddOrUpdateButton"

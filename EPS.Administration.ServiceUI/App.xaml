@@ -6,29 +6,10 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style x:Key="MenuButton" TargetType="Button">
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                        <materialDesign:PackIcon
-                            Width="40"
-                            Height="25"
-                            Margin="1,1,1,1"
-                            HorizontalAlignment="Left"
-                            Foreground="#000000"
-                            Kind="Devices" />
-                        <TextBlock
-                            Name="ButtonTextContent"
-                            VerticalAlignment="Center"
-                            FontSize="15"
-                            FontWeight="Bold"
-                            Text="{TemplateBinding}"
-                            TextWrapping="WrapWithOverflow" />
-                    </WrapPanel>
+        <ResourceDictionary>
 
-                </Setter.Value>
-            </Setter>
-        </Style>
+            <Style x:Key="DefaultButton" TargetType="Button" />
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

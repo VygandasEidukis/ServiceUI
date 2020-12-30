@@ -93,11 +93,13 @@
                         Height="30"
                         Margin="0,5"
                         Click="Button_Click"
-                        Content="All" />
+                        Content="All"
+                        Style="{StaticResource DefaultButton}" />
                     <Button
                         Height="30"
                         Click="Button_Click_1"
-                        Content="None" />
+                        Content="None"
+                        Style="{StaticResource DefaultButton}" />
                 </StackPanel>
 
                 <TextBlock Grid.Row="9" Text="Select models:" />
@@ -117,11 +119,13 @@
                         Height="30"
                         Margin="0,5"
                         Click="Button_Click_2"
-                        Content="All" />
+                        Content="All"
+                        Style="{StaticResource DefaultButton}" />
                     <Button
                         Height="30"
                         Click="Button_Click_3"
-                        Content="None" />
+                        Content="None"
+                        Style="{StaticResource DefaultButton}" />
                 </StackPanel>
 
 
@@ -142,11 +146,13 @@
                         Height="30"
                         Margin="0,5"
                         Click="Button_Click_4"
-                        Content="All" />
+                        Content="All"
+                        Style="{StaticResource DefaultButton}" />
                     <Button
                         Height="30"
                         Click="Button_Click_5"
-                        Content="None" />
+                        Content="None"
+                        Style="{StaticResource DefaultButton}" />
                 </StackPanel>
 
 
@@ -167,18 +173,21 @@
                         Height="30"
                         Margin="0,5"
                         Click="Button_Click_7"
-                        Content="All" />
+                        Content="All"
+                        Style="{StaticResource DefaultButton}" />
                     <Button
                         Height="30"
                         Click="Button_Click_6"
-                        Content="None" />
+                        Content="None"
+                        Style="{StaticResource DefaultButton}" />
                 </StackPanel>
                 <Button
                     Grid.Row="15"
                     Grid.Column="1"
                     Width="150"
                     Click="Button_Click_8"
-                    Content="Generate" />
+                    Content="Generate"
+                    Style="{StaticResource DefaultButton}" />
             </Grid>
         </ScrollViewer>
     </Grid>

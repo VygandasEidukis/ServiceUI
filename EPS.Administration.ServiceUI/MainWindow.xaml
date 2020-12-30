@@ -14,8 +14,9 @@
     AllowDrop="True"
     FontSize="13"
     FontWeight="Bold"
+    Foreground="#123456"
     mc:Ignorable="d">
-    <Grid Background="#ECECEC" Loaded="Grid_Loaded">
+    <Grid Loaded="Grid_Loaded">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
