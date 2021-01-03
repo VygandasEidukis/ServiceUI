@@ -2,6 +2,7 @@
 using EPS.Administration.Models.APICommunication;
 using EPS.Administration.Models.Device;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace EPS.Administration.ServiceUI.ViewModel.Metadata
@@ -61,6 +62,16 @@ namespace EPS.Administration.ServiceUI.ViewModel.Metadata
                     {
                         Error = ErrorCode.ValidationError,
                         Message = "Status cannot be empty."
+                    });
+                    return;
+                }
+
+                if (Statuses.Count(x => x.Status == CurrentStatus.Status) > 1)
+                {
+                    MainWindow.Instance.AddNotification(new BaseResponse()
+                    {
+                        Error = ErrorCode.ValidationError,
+                        Message = "Status name already exists."
                     });
                     return;
                 }

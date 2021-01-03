@@ -49,7 +49,9 @@ namespace EPS.Administration.ServiceUI.View.Metadata
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            foreach(var group in Groups.Items)
+            if (Groups == null) return;
+
+            foreach (var group in Groups.Items)
             {
                 (group as ClassificationCheckBox).IsChecked = true;
             }
@@ -58,6 +60,8 @@ namespace EPS.Administration.ServiceUI.View.Metadata
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            if (Groups == null) return;
+
             foreach (var group in Groups.Items)
             {
                 (group as ClassificationCheckBox).IsChecked = false;
@@ -67,6 +71,8 @@ namespace EPS.Administration.ServiceUI.View.Metadata
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            if (Models == null) return;
+
             foreach (var group in Models.Items)
             {
                 (group as ModelCheckBox).IsChecked = true;
@@ -76,6 +82,8 @@ namespace EPS.Administration.ServiceUI.View.Metadata
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
+            if (Models == null) return;
+
             foreach (var group in Models.Items)
             {
                 (group as ModelCheckBox).IsChecked = false;
@@ -85,6 +93,8 @@ namespace EPS.Administration.ServiceUI.View.Metadata
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
+            if (Locations == null) return;
+
             foreach (var group in Locations.Items)
             {
                 (group as LocationCheckbox).IsChecked = true;
@@ -94,6 +104,8 @@ namespace EPS.Administration.ServiceUI.View.Metadata
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
+            if (Locations == null) return;
+
             foreach (var group in Locations.Items)
             {
                 (group as LocationCheckbox).IsChecked = false;
@@ -103,6 +115,8 @@ namespace EPS.Administration.ServiceUI.View.Metadata
 
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
+            if (Status == null) return;
+
             foreach (var group in Status.Items)
             {
                 (group as StatusCheckBox).IsChecked = true;
@@ -112,6 +126,8 @@ namespace EPS.Administration.ServiceUI.View.Metadata
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
+            if (Status == null) return;
+
             foreach (var group in Status.Items)
             {
                 (group as StatusCheckBox).IsChecked = false;
@@ -150,10 +166,6 @@ namespace EPS.Administration.ServiceUI.View.Metadata
             var name = $"DataReport-{DateTime.Now.ToString("MM-dd-yyyy-HH-mm-ss")}.xlsx";
             path = Path.Combine(path, name);
             var templatePath = Path.Combine(Directory.GetCurrentDirectory(), "Template.xlsx");
-            //using (FileStream fs = new FileStream(path, FileMode.Create))
-            //{
-
-            //}
 
             var fi = new FileInfo(path);
             var tfi = new FileInfo(templatePath);

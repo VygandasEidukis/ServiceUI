@@ -4,6 +4,7 @@ using EPS.Administration.Models.Device;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,6 +32,16 @@ namespace EPS.Administration.ServiceUI.ViewModel.Metadata
                     {
                         Error = ErrorCode.ValidationError,
                         Message = "Model cannot be empty."
+                    });
+                    return;
+                }
+
+                if (Models.Count(x => x.Name == CurrentModel.Name) > 1)
+                {
+                    MainWindow.Instance.AddNotification(new BaseResponse()
+                    {
+                        Error = ErrorCode.ValidationError,
+                        Message = "Model name already exists."
                     });
                     return;
                 }

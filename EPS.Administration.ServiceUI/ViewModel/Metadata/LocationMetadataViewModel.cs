@@ -73,6 +73,16 @@ namespace EPS.Administration.ServiceUI.ViewModel.Metadata
                     return;
                 }
 
+                if (AllLocations.Count(x => x.Name == CurrentLocation.Name) > 1)
+                {
+                    MainWindow.Instance.AddNotification(new BaseResponse()
+                    {
+                        Error = ErrorCode.ValidationError,
+                        Message = "Client name already exists."
+                    });
+                    return;
+                }
+
                 var locationsResponse = await service.UpdateLocation(Token, CurrentLocation);
                 MainWindow.Instance.AddNotification(locationsResponse ?? new BaseResponse() { Error = ErrorCode.InternalError, Message = "Failed to receive response from host." });
             }

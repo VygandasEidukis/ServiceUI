@@ -32,6 +32,18 @@ namespace EPS.Administration.ServiceUI.View.Device.DeviceUpdateForms
                 MulitpleDeviceCreation.Visibility = Visibility.Collapsed;
                 SerialNumberBox.IsEnabled = false;
             }
+            else
+            {
+                SwitchFields(false);
+            }
+        }
+
+        private void SwitchFields(bool isEnabled)
+        {
+            SerialNumberBox.IsEnabled = isEnabled;
+            OwnedBy.IsEnabled = isEnabled;
+            AcquisitionBox.IsEnabled = isEnabled;
+            Model.IsEnabled = isEnabled;
         }
 
         private void AddDevice_Button(object sender, RoutedEventArgs e)
@@ -57,6 +69,7 @@ namespace EPS.Administration.ServiceUI.View.Device.DeviceUpdateForms
         {
             if (MultiDevicesList.SelectedIndex >= 0)
             {
+                SwitchFields(true);
                 Context.CurrentDevice = Context.MultiDevices[MultiDevicesList.SelectedIndex];
             }
         }

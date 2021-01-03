@@ -60,6 +60,7 @@
 
             <TextBlock Grid.Row="7" Text="Acquisition date:" />
             <DatePicker
+                x:Name="AcquisitionBox"
                 Grid.Row="7"
                 Grid.Column="1"
                 DisplayDate="{Binding CurrentDevice.AcquisitionDate}"

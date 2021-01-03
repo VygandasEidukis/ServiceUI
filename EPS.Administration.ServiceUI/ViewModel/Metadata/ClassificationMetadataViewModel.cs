@@ -2,6 +2,7 @@
 using EPS.Administration.Models.APICommunication;
 using EPS.Administration.Models.Device;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace EPS.Administration.ServiceUI.ViewModel.Metadata
@@ -28,6 +29,16 @@ namespace EPS.Administration.ServiceUI.ViewModel.Metadata
                     {
                         Error = ErrorCode.ValidationError,
                         Message = "Code and Model cannot be empty."
+                    });
+                    return;
+                }
+
+                if (Classifications.Count(x => x.Model == CurrentClassification.Model) > 1)
+                {
+                    MainWindow.Instance.AddNotification(new BaseResponse()
+                    {
+                        Error = ErrorCode.ValidationError,
+                        Message = "Internal model already exists."
                     });
                     return;
                 }
